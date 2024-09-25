@@ -1,5 +1,11 @@
 package local.kyungmin_wms.domain;
 
-public class Company {
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter(AccessLevel.PRIVATE)
+public class Company extends Member{
+  private String businessNumber;
 
 }
