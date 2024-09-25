@@ -10,12 +10,11 @@ import lombok.Setter;
 public class Stock {
 
   private Long id;
-  private String stockCode; //재고 로트 번호
-  private int quantity; //총 박스 수량
+  private String stockCode;
   private LocalDateTime regDate;
   private LocalDateTime modDate;
 
-  private Product product;
+  private Product product; // 상품명 , 회사명 , 유효기간 , 제조번호 , 보관온도 , 상품 종류 , 총 박스 수량 전부 Product 혹은 Product의 연관관계로 알 수 있음!
   private Warehouse warehouse;
   private Palette palette;
 
