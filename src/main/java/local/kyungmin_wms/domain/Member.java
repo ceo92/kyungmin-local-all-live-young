@@ -1,6 +1,8 @@
 package local.kyungmin_wms.domain;
 
 import java.time.LocalDateTime;
+import local.kyungmin_wms.constant.AccountStatus;
+import local.kyungmin_wms.constant.RoleType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;

@@ -15,8 +15,8 @@ public class Stock {
   private LocalDateTime modDate;
 
   private Product product; // 상품명 , 회사명 , 유효기간 , 제조번호 , 보관온도 , 상품 종류 , 총 박스 수량 전부 Product 혹은 Product의 연관관계로 알 수 있음!
-  private Warehouse warehouse;
-  private Palette palette;
+  private Warehouse warehouse; //창고명 , 창고주소
+  private Pallet pallet;
 
 
 

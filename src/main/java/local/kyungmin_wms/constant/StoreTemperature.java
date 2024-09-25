@@ -1,4 +1,4 @@
-package local.kyungmin_wms.domain;
+package local.kyungmin_wms.constant;
 
 public enum StoreTemperature {
 

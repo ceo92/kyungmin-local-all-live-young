@@ -2,8 +2,8 @@ package local.kyungmin_wms.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import local.kyungmin_wms.domain.ProductType;
-import local.kyungmin_wms.domain.StoreTemperature;
+import local.kyungmin_wms.constant.ProductType;
+import local.kyungmin_wms.constant.StoreTemperature;
 import lombok.Data;
 
 //검색 조건
