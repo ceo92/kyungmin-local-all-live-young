@@ -14,6 +14,6 @@ public class StockSearch {
   private String companyName;
   private LocalDateTime regDate;
   private LocalDateTime modDate;
-  private Integer quantity;
+  private Integer quantity; //입고 시 총 박스 수량
 
 }

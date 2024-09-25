@@ -9,11 +9,11 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface StockMapper {
 
-  void update(Stock stock);
+  void update(Long id , Integer quantity); //재고 수정(재고 실사)
 
-  List<Stock> findAll(StockSearch stockSearch);
+  List<Stock> findAll(StockSearch stockSearch); // 검색조건 별 전체 재고 화면 조회
 
-  Optional<Stock> find
+  Optional<Stock> findById(Long id); //상세 재고 화면 조회
 
 
 
