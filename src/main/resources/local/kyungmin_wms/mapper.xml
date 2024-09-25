@@ -13,7 +13,7 @@
 
   <select id="findAll" resultType="Stock">
     select *
-    from Stock i join member m
+    from Stock i join Product m
     on i.member_id = m.id
     <where>
       <if test="member != null"> <!--member 존재하는지 검증 존재하면 외래키 -->
