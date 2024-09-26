@@ -385,24 +385,42 @@
 
           <form th:object="${stockSearch}" th:action method="get">
             <div>
-              <label th:for="#ids.prev('stockCode')"></label>
+              <label th:for="#ids.prev('stockCode')" th:text="|재고 코드 : |"></label>
               <input type="text" th:field="*{stockCode}">
             </div>
 
             <div>
-              <label th:for="#ids.prev('storeTemperature')"></label>
-              <input type="checkbox" th:field="*{storeTemperature}" th:value=""> <!-- Boolean 아니면 무조건 value 존재해야됨 , boolean은 true false만 넘겨주면 되지만, non -boolean은 어떤 값을 넘길지를 지정해줘야됨!-->
+              <th:block th:each="storeTemperature : ${storeTemperatures}">
+                <input type="checkbox" th:field="*{storeTemperature}" th:value="${storeTemperature.name()}"> <!-- Boolean 아니면 무조건 value 존재해야됨 , boolean은 true false만 넘겨주면 되지만, non -boolean은 어떤 값을 넘길지를 지정해줘야됨!-->
+                <label th:for="#ids.prev('storeTemperature')" th:text="${storeTemperature.description}"></label>
+              </th:block>
             </div>
 
             <div>
-              <label th:for="#ids.prev('stockCode')"></label>
-              <input type="text" th:field="*{stockCode}">
+              <th:block th:each="productType : ${productTypes}">
+                <input type="checkbox" th:field="*{productType}" th:value="${productType.name()}"> <!-- Boolean 아니면 무조건 value 존재해야됨 , boolean은 true false만 넘겨주면 되지만, non -boolean은 어떤 값을 넘길지를 지정해줘야됨!-->
+                <label th:for="#ids.prev('productType')" th:text="${productType.description}"></label>
+              </th:block>
+            </div>
+
+
+            <div>
+              <label th:for="#ids.prev('productName')" th:text="|의약품 이름 : |"></label>
+              <input type="text" th:field="*{product.productName}">
             </div>
 
             <div>
-              <label th:for="#ids.prev('stockCode')"></label>
-              <input type="text" th:field="*{stockCode}">
+              <label th:for="#ids.prev('companyName')" th:text="|회사 이름 : |"></label>
+              <input type="text" th:field="*{product.company.member.name}">
             </div>
+
+
+            <div>
+              <label th:for="#ids.prev('expirationDate')" th:text="|유효기간 : |"></label>
+              <input type="text" th:field="*{product.inboundRequestProduct.expirationDate}">
+            </div>
+
+
 
 
 

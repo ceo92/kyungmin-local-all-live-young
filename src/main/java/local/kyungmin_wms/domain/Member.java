@@ -6,6 +6,7 @@ import local.kyungmin_wms.constant.RoleType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Getter @Setter(AccessLevel.PRIVATE)
 public class Member {
@@ -16,7 +17,11 @@ public class Member {
   private String phoneNumber;
   private Address address;
   private AccountStatus accountStatus;
+
+  @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
   private LocalDateTime joinDate;
+
+  @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
   private LocalDateTime lastLoginDate;
   private RoleType roleType;
 }

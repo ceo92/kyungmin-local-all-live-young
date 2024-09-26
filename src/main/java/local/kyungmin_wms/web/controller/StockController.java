@@ -24,12 +24,12 @@ public class StockController {
 
 
   //이렇게 모델로 넘겨주는 게 나음 ㅇㅇ
-  @ModelAttribute("storeTemperature")
+  @ModelAttribute("storeTemperatures")
   public StoreTemperature[] storeTemperatures(){
     return StoreTemperature.values();
   }
 
-  @ModelAttribute("productType")
+  @ModelAttribute("productTypes")
   public ProductType[] productTypes(){
     return ProductType.values();
   }
