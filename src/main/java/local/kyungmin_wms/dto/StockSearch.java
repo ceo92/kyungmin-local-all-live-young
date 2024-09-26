@@ -27,10 +27,6 @@ public class StockSearch {
   private String manufactureNumber;
   private LocalDateTime minExpirationDate; //유효기간 범위(최소 설정)
   private LocalDateTime maxExpirationDate; //유효기간 범위(최대 설정)
-  private LocalDateTime minRegDate; // 등록일자 범위(최소 설정)
-  private LocalDateTime maxRegDate; // 등록일자 범위(최대 설정)
-  private LocalDateTime minModDate; // 수정일자 범위(최소 설정)
-  private LocalDateTime maxModDate; // 수정일자 범위(최대 설정)
   private Integer minQuantity; //입고 시 박스 수량
   private Integer maxQuantity; //입고 시 박스 수량
 
