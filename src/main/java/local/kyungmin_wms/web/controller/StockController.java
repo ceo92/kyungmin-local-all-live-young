@@ -2,6 +2,8 @@ package local.kyungmin_wms.web.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import local.kyungmin_wms.constant.ProductType;
+import local.kyungmin_wms.constant.StoreTemperature;
 import local.kyungmin_wms.domain.Member;
 import local.kyungmin_wms.dto.StockSearch;
 import local.kyungmin_wms.login_temp.Login;
@@ -19,6 +21,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class StockController {
 
   private final StockService stockService;
+
+
+  //이렇게 모델로 넘겨주는 게 나음 ㅇㅇ
+  @ModelAttribute("storeTemperature")
+  public StoreTemperature[] storeTemperatures(){
+    return StoreTemperature.values();
+  }
+
+  @ModelAttribute("productType")
+  public ProductType[] productTypes(){
+    return ProductType.values();
+  }
 
   @GetMapping
   public String getStocks(@ModelAttribute("stockSearch") StockSearch stockSearch, Model model , @Login Member member){
