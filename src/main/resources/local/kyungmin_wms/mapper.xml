@@ -4,22 +4,23 @@
 <mapper namespace="local.kyungmin_wms.mapper.StockMapper">
 
   <select id="findById" resultType="Stock">
-    select *
-    from Stock where id = #{id}
+    SELECT *
+    FROM Stock where id = #{id}
   </select>
 
 
-
-
   <select id="findAll" resultType="Stock">
-    select *
-    from Stock i join Product m
-    on i.member_id = m.id
+    SELECT *
+    FROM Stock s
+    JOIN Product p
+    ON s.product_id = p.id
+    JOIN Company c
+    ON p.company_id = c.id
     <where>
-      <if test="member != null"> <!--member 존재하는지 검증 존재하면 외래키 -->
-        and member_id = #{member.id}
+      <if test="product != null"> <!--product 존재하는지 검증 존재하면 외래키 -->
+        and product = #{product.id}
       </if>
-      <if test="itemSearch.itemName != null and !itemSearch.itemName.equals('')"> <!-- 값이 있을 경우 , 문자열이므로 ''도 비교해야됨-->
+      <if test="stockSearch.itemName != null and !itemSearch.itemName.equals('')"> <!-- 값이 있을 경우 , 문자열이므로 ''도 비교해야됨-->
         and item_name like concat('%' , #{itemSearch.itemName} , '%')
       </if>
       <if test="itemSearch.maxPrice != null and !itemSearch.maxPrice.equals('')"> <!-- 값이 있을 경우-->
@@ -36,8 +37,8 @@
 
   <!--누가 상품 등록했는지는 나중에 , 로그인까지 구현해야됨-->
   <update id="update">
-    update item
-    set item_name = #{itemName} , price = #{price} , stock_quantity = #{stockQuantity} , update_date = #{updateDate}
+    update Stock
+    set quantity = #{stock.quantity}  , mod_date = #{LocalDateTime.now()}
     where id = #{id}
   </update>
 

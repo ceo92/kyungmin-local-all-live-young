@@ -19,6 +19,4 @@ public class Stock {
   private Pallet pallet;
 
 
-
-
 }
