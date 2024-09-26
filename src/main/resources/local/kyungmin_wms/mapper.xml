@@ -8,8 +8,36 @@
     FROM Stock where id = #{id}
   </select>
 
+  <resultMap id="stocks" type="Stock">
+    <id column="stock_id" property="id"/>
+    <!-- column : 테이블의 칼럼명 , property : 자바 도메인의 필드명-->
+    <result column="stock_code" property="stockCode"/>
+    <association property="product" javaType="Product" column="product_id">
+      <id property="id" column="product_id"/>
+      <result column="product_name" property="productName"/>
+      <result column="store_temperature" property="storeTemperature"/>
+      <result column="product_type" property="productType"/>
+      <association property="company" javaType="Company" column="company_id">
+        <association property="member" javaType="Member" column="member_id">
+          <id column="member_id" property="id"/>
+          <result column="name" property="name"/>
+        </association>
+      </association>
+    </association>
 
-  <select id="findAll" resultType="Stock">
+
+    <association property="pallet" javaType="Pallet" column="pallet_id">
+      <id column="pallet_id" property="id"/>
+      <association property="inboundRequestProduct" javaType="InboundRequestProduct" column="inbound_request_product_id">
+        <id column="inbound_request_product_id" property="id"/>
+        <result column="expiration_date" property="expirationDate"/>
+      </association>
+    </association>
+  </resultMap>
+
+
+
+  <select id="findAll" resultMap="stocks">
     SELECT *
     FROM Stock s
     JOIN Product p
@@ -40,28 +68,6 @@
       <if test="stockSearch.companyNme != null and !stockSearch.companyName.equals('')">
         and c.name = #{stockSearch.companyName}
       </if>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       <!--<if test="product != null"> &lt;!&ndash;product 존재하는지 검증 존재하면 외래키 &ndash;&gt;
         and product = #{product.id}
