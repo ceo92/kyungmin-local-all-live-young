@@ -7,11 +7,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Stock {
 
   private Long id;

@@ -7,6 +7,7 @@ import local.kyungmin_wms.domain.Stock;
 import local.kyungmin_wms.dto.StockSearch;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Service;
 
 @Mapper
 public interface StockMapper {

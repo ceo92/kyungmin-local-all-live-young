@@ -8,6 +8,54 @@
     FROM Stock where id = #{id}
   </select>
 
+  <!--연관관계 바꾸기 , 연관관계 맺고 있는 테이블의 위치 ㅇㅇ-->
+  <select id="findAll" resultMap="stocks">
+    SELECT s.stock_id , s.stock_code , m.name , p.product_name , p.store_temperature , p.product_type ,w.warehouse_name , w.warehouse_code , i.expiration_date
+    FROM STOCK s
+    JOIN PRODUCT p
+    ON s.product_id = p.product_id
+    JOIN MEMBER m
+    ON p.member_id = m.member_id
+    JOIN WAREHOUSE w
+    ON s.warehouse_id = w.warehouse_id
+    JOIN PALLET pa
+    ON s.pallet_id = pa.pallet_id
+    JOIN INBOUND_REQUEST_PRODUCT i
+    ON pa.inbound_request_product_id = i.inbound_request_product_id
+    <where>
+      <!--<if test="stockSearch.stockCode != null and !stockSearch.stockCode.equals('')">
+        and s.stock_code = #{stockSearch.stockCode}
+      </if>
+
+      <if test="member.roleType.equals('ADMIN')">
+        and w.warehouse_code = #{stockSearch.warehouseCode}
+        and w.warehouse_name = #{stockSearch.warehouseName}
+      </if>
+
+      <foreach collection="stockSearch.storeTemperatures" item="storeTemperature" > &lt;!&ndash; 문제 확인해보자&ndash;&gt;
+        and p.store_temperature = #{storeTemperature}
+      </foreach>
+
+      <foreach collection="stockSearch.productTypes" item="productType" >
+        and p.product_type = #{productType}
+      </foreach>
+
+      <if test="stockSearch.productName != null and !stockSearch.productName.equals('')">
+        and p.product_name = #{stockSearch.productName}
+      </if>
+
+      <if test="stockSearch.companyName != null and !stockSearch.companyName.equals('')">
+        and m.name = #{stockSearch.companyName}
+      </if>
+
+      <if test="stockSearch.expirationDate != null and !stockSearch.expirationDate.equals('')">
+        and i.expiration_date &lt; #{stockSearch.expirationDate}
+      </if>-->
+    </where>
+  </select>
+
+
+
   <resultMap id="stocks" type="Stock">
     <id column="stock_id" property="id"/>
     <!-- column : 테이블의 칼럼명 , property : 자바 도메인의 필드명-->
@@ -17,12 +65,10 @@
       <result column="product_name" property="productName"/>
       <result column="store_temperature" property="storeTemperature"/>
       <result column="product_type" property="productType"/>
-      <association property="company" javaType="Company" column="company_id">
-        <association property="member" javaType="Member" column="member_id">
-          <id column="member_id" property="id"/>
-          <result column="name" property="name"/>
-          <result column="role_type" property="roleType"/>
-        </association>
+      <association property="member" javaType="Member" column="member_id">
+        <id column="member_id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="role_type" property="roleType"/>
       </association>
     </association>
 
@@ -48,53 +94,6 @@
 
 
 
-  <select id="findAll" resultMap="stocks">
-    SELECT *
-    FROM Stock s
-    JOIN Product p
-    ON s.product_id = p.product_id
-    JOIN Member m
-    ON p.company_id = m.member_id
-    JOIN Warehouse w
-    ON s.warehouse_id = w.warehouse_id
-    JOIN Pallet pa
-    ON s.pallet_id = pa.id
-    JOIN InboundRequestProduct i
-    ON pa.inbound_request_product_id = i.id
-    <where>
-
-      <if test="stockSearch.stockCode != null and !stockSearch.stockCode.equals('')">
-        and s.stock_code = #{stockSearch.stockCode}
-      </if>
-
-      <if test="member.roleType.description.equals('총 관리자')">
-        and w.warehouse_code = #{stockSearch.warehouseCode}
-        and w.warehouse_name = #{stockSearch.warehouseName}
-      </if>
-
-      <foreach collection="stockSearch.storeTemperature" item="storeTemperature" open="(" separator="," close=")">
-        and p.store_temperature = #{stockSearch.storeTemperature}
-      </foreach>
-
-      <foreach collection="stockSearch.productType" item="productType" open="(" separator="," close=")">
-        and p.product_type = #{stockSearch.productType}
-      </foreach>
-
-      <if test="stockSearch.productName != null and !stockSearch.productName.equals('')">
-        and p.product_name = #{stockSearch.productName}
-      </if>
-
-      <if test="stockSearch.companyName != null and !stockSearch.companyName.equals('')">
-        and m.name = #{stockSearch.companyName}
-      </if>
-
-      <if test="stockSearch.expirationDate != null and !stockSearch.expirationDate.equals('')">
-        and i.expiration_date  &lt; #{stockSearch.expirationDate}
-      </if>
-
-    </where>
-  </select>
-
 
 
 
@@ -104,29 +103,6 @@
     set quantity = #{stock.quantity}  , mod_date = #{LocalDateTime.now()}
     where id = #{id}
   </update>
-
-
-
-
-
-
-  <!-- <resultMap id="itemsWithMember" type="Item">
-     <id column="id" property="id"/>
-     &lt;!&ndash; column : 테이블의 칼럼명 , property : 자바 도메인의 필드명&ndash;&gt;
-     <result column="item_name" property="itemName"/>
-     <result column="price" property="price"/>
-     <result column="stock_quantity" property="stockQuantity"/>
-     <result column="register_date" property="registerDate"/>
-     <result column="update_date" property="updateDate"/>
-     <association property="member" javaType="Member" column="member_id">
-       <id property="id" column="id"/>
-       <result property="loginEmail" column="login_email"/>
-       <result property="password" column="password"/>
-       <result property="memberName" column="member_name"/>
-       <result property="businessName" column="business_name"/>
-       <result property="businessNum" column="business_num"/>
-     </association>
-   </resultMap>-->
 
 
 

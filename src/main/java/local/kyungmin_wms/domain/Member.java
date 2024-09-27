@@ -22,8 +22,10 @@ public class Member {
   private String phoneNumber;
   private Address address;
   private AccountStatus accountStatus;
+
   @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
   private LocalDateTime joinDate;
+
   @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
   private LocalDateTime lastLoginDate;
   private RoleType roleType;
