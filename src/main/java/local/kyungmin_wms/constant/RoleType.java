@@ -2,7 +2,7 @@ package local.kyungmin_wms.constant;
 
 public enum RoleType {
 
-  ADMIN("총 관리자") , WAREHOUSE_MANAGER("창고 관리자") , COMPANY("회사") , DELIVERY_MAN("배송기사");
+  ADMIN("총 관리자") , WAREHOUSE_MANAGER("창고 관리자") , COMPANY("회사");
   private final String description;
 
   RoleType(String description){
