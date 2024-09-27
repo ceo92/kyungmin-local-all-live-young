@@ -1,5 +1,6 @@
 package local.kyungmin_wms.domain;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import local.kyungmin_wms.constant.AccountStatus;
 import local.kyungmin_wms.constant.RoleType;
@@ -21,11 +22,14 @@ public class Member {
   private String phoneNumber;
   private Address address;
   private AccountStatus accountStatus;
-
   @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
   private LocalDateTime joinDate;
-
   @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
   private LocalDateTime lastLoginDate;
   private RoleType roleType;
+  private String businessNumber;
+  private Warehouse warehouse;
+  private Boolean isAgree;
+  private LocalDateTime agreeDate;
+
 }

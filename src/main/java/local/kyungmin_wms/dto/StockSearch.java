@@ -4,10 +4,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 import local.kyungmin_wms.constant.ProductType;
 import local.kyungmin_wms.constant.StoreTemperature;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 //검색 조건
 @Data
+@AllArgsConstructor @NoArgsConstructor
 public class StockSearch {
 
 

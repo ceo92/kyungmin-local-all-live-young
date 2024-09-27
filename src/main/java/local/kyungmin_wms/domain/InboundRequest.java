@@ -16,7 +16,7 @@ public class InboundRequest {
 
   private Long id;
   private String inboundRequestCode;
-  private Company company;
+  private Member member;
   private Warehouse warehouse;
   private RequestStatus requestStatus;
 

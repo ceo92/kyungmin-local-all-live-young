@@ -1,18 +1,11 @@
 package local.kyungmin_wms.mapper;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import local.kyungmin_wms.constant.ProductType;
-import local.kyungmin_wms.constant.RoleType;
 import local.kyungmin_wms.constant.StoreTemperature;
-import local.kyungmin_wms.domain.Company;
-import local.kyungmin_wms.domain.InboundRequestProduct;
 import local.kyungmin_wms.domain.Member;
-import local.kyungmin_wms.domain.Pallet;
-import local.kyungmin_wms.domain.Product;
-import local.kyungmin_wms.domain.Stock;
-import local.kyungmin_wms.domain.Warehouse;
 import local.kyungmin_wms.dto.StockSearch;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +22,7 @@ class StockMapperTest {
 
   @Test
   void findAll() {
-    Company member = new Company();
+    /*Company member = new Company();
     member.setId(1L);
     member.setName("이경민");
     member.setRoleType(RoleType.COMPANY);
@@ -59,9 +52,24 @@ class StockMapperTest {
     stock.setPallet(pallet);
     stock.setStockCode("K1-001");
     stock.setProduct(product);
-    stock.setWarehouse(warehouse);
-
-    stockMapper.findAll(new StockSearch(), new Member())
+    stock.setWarehouse(warehouse);*/
+    List<StoreTemperature> storeTemperatures = new ArrayList<>();
+    storeTemperatures.add(StoreTemperature.ROOM_TEMPERATURE);
+    storeTemperatures.add(StoreTemperature.FROZEN);
+    List<ProductType> productTypes = new ArrayList<>();
+    productTypes.add(ProductType.EXPLOSIVE);
+    productTypes.add(ProductType.DRUG);
+    StockSearch stockSearch = new StockSearch(
+        "여주 창고",
+        "C100",
+        "AA",
+        storeTemperatures ,
+        productTypes ,
+        "아메리카노" ,
+        "이경민" ,
+        LocalDateTime.of(2024 , 3 , 11 ,12 , 30 , 0));
+    //INSERT INTO MEMBER VALUES(1 , '이경민' , 'abcd' , '010-0000-0000' , 'abcd' , '경수대로1100' , '100-1010' , '활성' , '2024-03-11' , '2024-03-19' , '총관리자' , 'B100' , 1 , 1 , '2024-04-01');
+    stockMapper.findAll(stockSearch, new Member())
   }
 
   @Test

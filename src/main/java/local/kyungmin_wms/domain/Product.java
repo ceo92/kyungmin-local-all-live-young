@@ -22,6 +22,6 @@ public class Product {
   @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
   private LocalDateTime productLicenseDate;
   private Integer productLicenseNum;
-  private Company company;
+  private Member member;
 
 }
