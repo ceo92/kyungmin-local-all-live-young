@@ -21,10 +21,10 @@
         <association property="member" javaType="Member" column="member_id">
           <id column="member_id" property="id"/>
           <result column="name" property="name"/>
+          <result column="role_type" property="roleType"/>
         </association>
       </association>
     </association>
-
 
     <association property="pallet" javaType="Pallet" column="pallet_id">
       <id column="pallet_id" property="id"/>
@@ -32,6 +32,17 @@
         <id column="inbound_request_product_id" property="id"/>
         <result column="expiration_date" property="expirationDate"/>
       </association>
+    </association>
+
+    <association property="warehouse" javaType="Warehouse" column="warehouse_id">
+      <id column="warehouse_id" property="id"/>
+      <result column="warehouse_name" property="name"/>
+      <result column="warehouse_code" property="code"/>
+      <result column="warehouse_road_address" property="roadNameAddress"/>
+      <result column="warehouse_jibun_address" property="jibunAddress"/>
+      <result column="warehouse_zipcode" property="zipcode"/>
+      <result column="warehouse_details_address" property="detailsAddress"/>
+
     </association>
   </resultMap>
 
@@ -48,39 +59,41 @@
     ON m.member_id = c.company_id
     JOIN Warehouse w
     ON s.warehouse_id = w.warehouse_id
+    JOIN Pallet pa
+    ON s.pallet_id = pa.id
+    JOIN InboundRequestProduct i
+    ON pa.inbound_request_product_id = i.id
     <where>
-      <if test="member != null">
-        and m.member_id = #{member.id} <!-- 이거 넣은 이유는 파라메터로 넘어온 Member에 대한 상품 정보만 보기 위해 ㅇㅇ 조인 조건은 그냥 상품 등록한 모든 회원 정보 가져오는 거고 and 를 통해 한번 더 회원을 특정지을 수 있음! -->
 
+      <if test="stockSearch.stockCode != null and !stockSearch.stockCode.equals('')">
+        and s.stock_code = #{stockSearch.stockCode}
       </if>
 
-
-      <!--<if test="member.roleType.description.equals('총 관리자')">
+      <if test="member.roleType.description.equals('총 관리자')">
         and w.warehouse_code = #{stockSearch.warehouseCode}
         and w.warehouse_name = #{stockSearch.warehouseName}
-      </if>-->
+      </if>
+
+      <foreach collection="stockSearch.storeTemperature" item="storeTemperature" open="(" separator="," close=")">
+        and p.store_temperature = #{stockSearch.storeTemperature}
+      </foreach>
+
+      <foreach collection="stockSearch.productType" item="productType" open="(" separator="," close=")">
+        and p.product_type = #{stockSearch.productType}
+      </foreach>
 
       <if test="stockSearch.productName != null and !stockSearch.productName.equals('')">
         and p.product_name = #{stockSearch.productName}
       </if>
 
-
-      <if test="stockSearch.companyNme != null and !stockSearch.companyName.equals('')">
-        and c.name = #{stockSearch.companyName}
+      <if test="stockSearch.companyName != null and !stockSearch.companyName.equals('')">
+        and m.name = #{stockSearch.companyName}
       </if>
 
-      <!--<if test="product != null"> &lt;!&ndash;product 존재하는지 검증 존재하면 외래키 &ndash;&gt;
-        and product = #{product.id}
+      <if test="stockSearch.expirationDate != null and !stockSearch.expirationDate.equals('')">
+        and i.expiration_date  &lt; #{stockSearch.expirationDate}
       </if>
-      <if test="stockSearch.itemName != null and !itemSearch.itemName.equals('')"> &lt;!&ndash; 값이 있을 경우 , 문자열이므로 ''도 비교해야됨&ndash;&gt;
-        and item_name like concat('%' , #{itemSearch.itemName} , '%')
-      </if>
-      <if test="itemSearch.maxPrice != null and !itemSearch.maxPrice.equals('')"> &lt;!&ndash; 값이 있을 경우&ndash;&gt;
-        and price &lt;= #{itemSearch.maxPrice}
-      </if>
-      <if test="itemSearch.maxStockQuantity != null and !itemSearch.maxStockQuantity.equals('')">
-        and stock_quantity &lt;= #{itemSearch.maxStockQuantity}
-      </if>-->
+
     </where>
   </select>
 
@@ -99,23 +112,23 @@
 
 
 
- <!-- <resultMap id="itemsWithMember" type="Item">
-    <id column="id" property="id"/>
-    &lt;!&ndash; column : 테이블의 칼럼명 , property : 자바 도메인의 필드명&ndash;&gt;
-    <result column="item_name" property="itemName"/>
-    <result column="price" property="price"/>
-    <result column="stock_quantity" property="stockQuantity"/>
-    <result column="register_date" property="registerDate"/>
-    <result column="update_date" property="updateDate"/>
-    <association property="member" javaType="Member" column="member_id">
-      <id property="id" column="id"/>
-      <result property="loginEmail" column="login_email"/>
-      <result property="password" column="password"/>
-      <result property="memberName" column="member_name"/>
-      <result property="businessName" column="business_name"/>
-      <result property="businessNum" column="business_num"/>
-    </association>
-  </resultMap>-->
+  <!-- <resultMap id="itemsWithMember" type="Item">
+     <id column="id" property="id"/>
+     &lt;!&ndash; column : 테이블의 칼럼명 , property : 자바 도메인의 필드명&ndash;&gt;
+     <result column="item_name" property="itemName"/>
+     <result column="price" property="price"/>
+     <result column="stock_quantity" property="stockQuantity"/>
+     <result column="register_date" property="registerDate"/>
+     <result column="update_date" property="updateDate"/>
+     <association property="member" javaType="Member" column="member_id">
+       <id property="id" column="id"/>
+       <result property="loginEmail" column="login_email"/>
+       <result property="password" column="password"/>
+       <result property="memberName" column="member_name"/>
+       <result property="businessName" column="business_name"/>
+       <result property="businessNum" column="business_num"/>
+     </association>
+   </resultMap>-->
 
 
 

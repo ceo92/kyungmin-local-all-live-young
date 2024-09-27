@@ -12,6 +12,7 @@ public class StockSearch {
 
 
   private String warehouseName; //총관리자의 재고 조회
+  private String warehouseCode; //총관리자의 재고 조회
 
   private String stockCode;
   private List<StoreTemperature> storeTemperature; //보관 온도(상온 , 냉동 , 냉장) 별 조회 체크박스 검색

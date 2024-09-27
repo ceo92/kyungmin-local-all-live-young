@@ -3,11 +3,15 @@ package local.kyungmin_wms.domain;
 
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-@Getter @Setter(AccessLevel.PRIVATE)
+@Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Stock {
 
   private Long id;

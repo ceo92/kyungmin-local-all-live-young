@@ -3,11 +3,15 @@ package local.kyungmin_wms.domain;
 import java.time.LocalDateTime;
 import local.kyungmin_wms.constant.RequestStatus;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-@Getter @Setter(AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter @Setter
 public class InboundRequest {
 
   private Long id;
