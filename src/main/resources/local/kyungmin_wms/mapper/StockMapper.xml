@@ -53,10 +53,8 @@
     FROM Stock s
     JOIN Product p
     ON s.product_id = p.product_id
-    JOIN Company c
-    ON p.company_id = c.company_id
     JOIN Member m
-    ON m.member_id = c.company_id
+    ON p.company_id = m.member_id
     JOIN Warehouse w
     ON s.warehouse_id = w.warehouse_id
     JOIN Pallet pa
