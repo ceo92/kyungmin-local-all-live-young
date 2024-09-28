@@ -41,6 +41,7 @@ public class StockController {
 
   @GetMapping
   public String getStocks(@ModelAttribute("stockSearch") StockSearch stockSearch, Model model , @Login Member member){
+    log.info("date = {}" , stockSearch.getExpirationDate());
     List<Stock> stocks = stockService.findAll(stockSearch, member);
     model.addAttribute("member" , member);
     model.addAttribute("stocks" , stocks);

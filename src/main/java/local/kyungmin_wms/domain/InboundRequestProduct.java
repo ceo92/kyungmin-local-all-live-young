@@ -21,7 +21,7 @@ public class InboundRequestProduct {
   private Integer boxQuantity;
   private String manufactureNumber;
 
-  @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+  @DateTimeFormat(pattern = "yyyy-MM-dd hh시 mm분 ss초")
   private LocalDateTime expirationDate;
 
   private InboundRequest inboundRequest;

@@ -1,9 +1,11 @@
 package local.kyungmin_wms.config;
 
 import java.util.List;
+import local.kyungmin_wms.formatter.LocalDateTimeFormatter;
 import local.kyungmin_wms.login_temp.LoginArgumentResolver;
 import local.kyungmin_wms.login_temp.LoginInterceptor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -29,5 +31,8 @@ public class WebConfig implements WebMvcConfigurer {
         .order(1);
   }*/
 
-
+  @Override
+  public void addFormatters(FormatterRegistry registry) {
+    registry.addFormatter(new LocalDateTimeFormatter());
+  }
 }
