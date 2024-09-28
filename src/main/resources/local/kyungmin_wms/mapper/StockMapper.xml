@@ -75,7 +75,9 @@
         and m.name like concat('%' , #{stockSearch.companyName} , '%')
       </if>
 
-
+      <if test="stockSearch.expirationDate != null and !stockSearch.expirationDate.equals('')">
+        and i.expiration_date &lt; #{stockSearch.expirationDate}
+      </if>
 
       <!--<if test="member.roleType == @local.kyungmin_wms.constant.RoleType@ADMIN">
         and w.warehouse_code = #{stockSearch.warehouseCode}
@@ -116,9 +118,7 @@
 
 
 
-      <if test="stockSearch.expirationDate != null and !stockSearch.expirationDate.equals('')">
-        and i.expiration_date &lt; #{stockSearch.expirationDate}
-      </if>
+
     </where>-->
   </select>
 
