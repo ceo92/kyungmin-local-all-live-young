@@ -51,9 +51,24 @@
         and s.stock_code = #{stockSearch.stockCode}
       </if>
 
-      <foreach collection="stockSearch.storeTemperatures" item="storeTemperature" open="(" separator="," close=")">
-          and p.store_temperature = #{storeTemperature}
-      </foreach>
+      <if test="stockSearch.storeTemperatures != null and stockSearch.storeTemperatures.size() > 0">
+        and p.store_temperature IN
+        <foreach collection="stockSearch.storeTemperatures" item="storeTemperature" open="(" separator="," close=")">
+          #{storeTemperature}
+        </foreach>
+      </if>
+
+
+      <if test="stockSearch.productTypes != null and stockSearch.productTypes.size() > 0">
+        and p.product_type IN
+        <foreach collection="stockSearch.productTypes" item="productType" open="(" separator="," close=")">
+          #{productType}
+        </foreach>
+      </if>
+
+
+
+
 
 
       <!--<if test="member.roleType == @local.kyungmin_wms.constant.RoleType@ADMIN">
