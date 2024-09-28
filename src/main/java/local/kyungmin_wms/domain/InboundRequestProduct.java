@@ -23,11 +23,9 @@ public class InboundRequestProduct {
 
   @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
   private LocalDateTime expirationDate;
-  //private InboundRequest inboundRequest;
+
+  private InboundRequest inboundRequest;
   private Product product;
 
-  public InboundRequestProduct(Long id , LocalDateTime expirationDate){
-    this.id = id;
-    this.expirationDate = expirationDate;
-  }
+
 }

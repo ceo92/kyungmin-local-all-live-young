@@ -48,7 +48,8 @@
     ON s.warehouse_id = w.warehouse_id
     <where>
       <if test="stockSearch.stockCode != null and !stockSearch.stockCode.equals('')">
-        and s.stock_code = #{stockSearch.stockCode}
+        and s.stock_code like concat('%' , #{stockSearch.stockCode} , '%')
+        <!--and s.stock_code = #{stockSearch.stockCode}-->
       </if>
 
       <if test="stockSearch.storeTemperatures != null and stockSearch.storeTemperatures.size() > 0">
@@ -66,8 +67,13 @@
         </foreach>
       </if>
 
+      <if test="stockSearch.productName != null and !stockSearch.productName.equals('')">
+        and p.product_name like concat('%' , #{stockSearch.productName} , '%')
+      </if>
 
-
+      <if test="stockSearch.companyName != null and !stockSearch.companyName.equals('')">
+        and m.name like concat('%' , #{stockSearch.companyName} , '%')
+      </if>
 
 
 
@@ -107,13 +113,8 @@
         </if>
       </foreach>&ndash;&gt;
 
-      <if test="stockSearch.productName != null and !stockSearch.productName.equals('')">
-        and p.product_name = #{stockSearch.productName}
-      </if>
 
-      <if test="stockSearch.companyName != null and !stockSearch.companyName.equals('')">
-        and m.name = #{stockSearch.companyName}
-      </if>
+
 
       <if test="stockSearch.expirationDate != null and !stockSearch.expirationDate.equals('')">
         and i.expiration_date &lt; #{stockSearch.expirationDate}
