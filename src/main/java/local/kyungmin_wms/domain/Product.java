@@ -16,8 +16,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Product {
   private Long id;
   private String productName;
-  private StoreTemperature storeTemperature;
-  private ProductType productType;
+  private String storeTemperature; //StoreTemperature
+  private String productType; //ProductType
 
   @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
   private LocalDateTime productLicenseDate;

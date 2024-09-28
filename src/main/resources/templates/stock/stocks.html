@@ -392,14 +392,14 @@
             <div>
               <th:block th:each="storeTemperature : ${storeTemperatures}">
                 <input type="checkbox" th:field="*{storeTemperatures}" th:value="${storeTemperature.name()}"> <!-- Boolean 아니면 무조건 value 존재해야됨 , boolean은 true false만 넘겨주면 되지만, non -boolean은 어떤 값을 넘길지를 지정해줘야됨!-->
-                <label th:for="${#ids.prev('storeTemperature')}" th:text="${storeTemperature.description}"></label>
+                <label th:for="${#ids.prev('storeTemperatures')}" th:text="${storeTemperature.description}"></label>
               </th:block>
             </div>
 
             <div>
               <th:block th:each="productType : ${productTypes}">
                 <input type="checkbox" th:field="*{productTypes}" th:value="${productType.name()}"> <!-- Boolean 아니면 무조건 value 존재해야됨 , boolean은 true false만 넘겨주면 되지만, non -boolean은 어떤 값을 넘길지를 지정해줘야됨!-->
-                <label th:for="${#ids.prev('productType')}" th:text="${productType.description}"></label>
+                <label th:for="${#ids.prev('productTypes')}" th:text="${productType.description}"></label>
               </th:block>
             </div>
 
@@ -414,22 +414,21 @@
               <input type="text" th:field="*{companyName}" id="companyName">
             </div>
 
-
             <div>
-              <label th:for="${#ids.prev('expirationDate')}" th:text="|유효기간 : |"></label>
-              <input type="date" th:field="*{expirationDate}">
+              <label for="expirationDate" th:text="|유효기간 : |"></label>
+              <input type="date" th:field="*{expirationDate}" id="expirationDate">
             </div>
 
+            <button type="submit" th:text="|검색하기|" class="btn btn-primary"></button>
 
-
-
-
-
+          </form>
 
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-bordered" id="inputTable" width="100%" cellspacing="0">
                 <thead>
+                  <!--<th th:if="${member.roleType.equals('ADMIN')}" th:text="|창고 코드|"></th>
+                  <th th:if="${member.roleType.equals('ADMIN')}" th:text="|창고 이름|"></th>-->
                   <th>재고 코드</th>
                   <th>보관 온도</th>
                   <th>의약품 종류</th>
@@ -439,6 +438,8 @@
                 </thead>
                 <tbody>
                 <tr th:each="stock : ${stocks}">
+                  <!--<td th:if="${member.roleType.equals('ADMIN')}" th:text="${stock.warehouse.warehouseCode}"></td>
+                  <td th:if="${member.roleType.equals('ADMIN')}" th:text="${stock.warehouse.warehouseName}"></td>-->
                   <td th:text="${stock.stockCode}"></td>
                   <td th:text="${stock.product.productName}"></td>
                   <td th:text="${stock.product.storeTemperature}"></td>
@@ -448,13 +449,9 @@
                 </tr>
                 </tbody>
               </table>
-              <div class="form-container">
-                <!--<button id="addRowBtn">+ 열 추가</button>-->
-                <button class="submit" type="submit">조회</button>
-              </div>
+
             </div>
           </div>
-          </form>
         </div>
 
       </div>

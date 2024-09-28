@@ -41,11 +41,12 @@ public class StockController {
 
   @GetMapping
   public String getStocks(@ModelAttribute("stockSearch") StockSearch stockSearch, Model model , @Login Member member){
-    log.info("aaa = {}" , stockSearch);
+    System.out.println(stockSearch.getStockCode());
+    System.out.println(stockSearch.getProductTypes());
+    System.out.println(stockSearch.getStoreTemperatures());
+    System.out.println(stockSearch.getStockCode());
     List<Stock> stocks = stockService.findAll(stockSearch, member);
-    for (Stock stock : stocks) {
-      log.info("stock = {}", stock);
-    }
+    model.addAttribute("member" , member);
     model.addAttribute("stocks" , stocks);
     return "stock/stocks";
   }

@@ -60,6 +60,7 @@ class StockMapperTest {
 
     //when
     List<Stock> findAll = stockMapper.findAll(stockSearch, member);
+
     for (Stock stock : findAll) {
       System.out.println("stock = " + stock);
     }

@@ -13,8 +13,9 @@ import org.springframework.format.annotation.NumberFormat;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Section {
-  private StoreTemperature storeTemperature;
-  private ProductType productType;
+  private Long id;
+  private String storeTemperature; //StoreTemperature
+  private String productType; //ProductType
 
   @NumberFormat(pattern = "#,###")
   private Integer sectionCapacity;
