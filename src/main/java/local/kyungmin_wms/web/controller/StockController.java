@@ -55,7 +55,7 @@ public class StockController {
 
   @GetMapping("aa")
   public String fdjksd(){
-    return "stock/stock";
+    return "fragment/layout";
   }
 
 
