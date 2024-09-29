@@ -5,7 +5,7 @@
 
   <update id="update">
     UPDATE INBOUND_REQUEST_PRODUCT
-    SET  = #{stock.quantity}  , mod_date = #{LocalDateTime.now()}
+    SET stock_quantity = #{stock.quantity}  , mod_date = now()
     where id = #{id}
   </update>
 
@@ -61,6 +61,8 @@
         <id column="inbound_request_product_id" property="id"/>
         <result property="expirationDate" column="expiration_date"/>
         <result property="manufactureNumber" column="manufacture_number"/>
+        <result property="palletQuantity" column="pallet_quantity"/>
+        <result property="boxQuantity" column="box_quantity"/>
       </association>
 
       <association property="section" javaType="Section">

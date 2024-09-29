@@ -1,9 +1,18 @@
 package local.kyungmin_wms.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class StockUpdateDto {
+  private String stockCode;
+  private String productName;
+  private String companyName;
+  private String manufactureNumber;
+  private Integer palletQuantity;
+  private Integer boxQuantity;
+
 
 
 }

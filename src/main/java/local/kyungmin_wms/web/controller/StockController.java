@@ -6,6 +6,7 @@ import local.kyungmin_wms.constant.StoreTemperature;
 import local.kyungmin_wms.domain.Member;
 import local.kyungmin_wms.domain.Stock;
 import local.kyungmin_wms.dto.StockSearch;
+import local.kyungmin_wms.dto.StockUpdateDto;
 import local.kyungmin_wms.login_temp.Login;
 import local.kyungmin_wms.service.StockService;
 import lombok.RequiredArgsConstructor;
@@ -57,16 +58,21 @@ public class StockController {
   @GetMapping("{id}/update")
   public String updateStockForm(@PathVariable("id") Long id , Model model){
     Stock stock = stockService.findStock(id);
-
-    model.addAttribute("stock" , stock);
+    StockUpdateDto stockUpdateDto = new StockUpdateDto(stock.getStockCode() ,
+        stock.getProduct().getProductName() ,
+        stock.getProduct().getMember().getName() ,
+        stock.getPallet().getInboundRequestProduct().getManufactureNumber() ,
+        stock.getPallet().getInboundRequestProduct().getPalletQuantity() ,
+        stock.getPallet().getInboundRequestProduct().getBoxQuantity());
+    model.addAttribute("id", id);
+    model.addAttribute("stock" , stockUpdateDto);
     return "stock/updateForm";
   }
 
   /*@PostMapping("{id}/update")
-  public String updateStockForm(){
+  public String updateStockForm(@){
 
-  }
-*/
+  }*/
 
 
 

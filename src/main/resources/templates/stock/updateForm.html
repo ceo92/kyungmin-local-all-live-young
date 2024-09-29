@@ -6,40 +6,44 @@
     <h1 class="h3 mb-4 text-gray-800"></h1>
     <div class="card shadow">
       <div class="card-body">
-        <h5>지출 수정</h5>
+        <h5>재고 수정</h5>
         <p></p>
-        <form method="post" th:action th:object="${expenseUpdateDTO}">
-          <input type="hidden" th:field="*{id}">
+        <form method="post" th:action th:object="${stock}">
+<!--          <input type="hidden" th:field="*{id}">-->
           <div class="form-group">
-            <label for="warehouse">창고명</label>
-            <input type="text" class="form-control" id="warehouse" th:field="${existExpense.warehouse.name}" disabled>
+            <label for="stockCode">재고 번호</label>
+            <input type="text" class="form-control" id="stockCode" th:field="*{stockCode}" disabled>
           </div>
           <div class="form-group">
-            <label for="expenseDate">지출일자</label>
-            <input type="date" class="form-control" id="expenseDate" th:field="${existExpense.expenseDate}" disabled>
+            <label for="productName">의약품 이름</label>
+            <input type="text" class="form-control" id="productName" th:field="*{productName}" disabled>
           </div>
+
+         <div class="form-group">
+            <label for="companyName">회사 이름</label>
+            <input type="text" class="form-control" id="companyName" th:field="*{companyName}" disabled>
+          </div>
+
+         <div class="form-group">
+            <label for="manufactureNumber">제조 번호</label>
+            <input type="text" class="form-control" id="manufactureNumber" th:field="*{manufactureNumber}" disabled>
+          </div>
+
+          <hr>
+
           <div class="form-group">
-            <label for="category">지출분류</label>
-            <select class="form-control" id="category" th:field="*{category}">
-              <option value="입고비용">입고비용</option>
-              <option value="출고비용">출고비용</option>
-              <option value="보관비용">보관비용</option>
-              <option value="유지보수비">유지보수비</option>
-              <option value="운영 인건비">운영 인건비</option>
-              <option value="기타">기타</option>
-            </select>
+            <label for="palletQuantity">파레트 수량</label>
+            <input type="text" class="form-control" id="palletQuantity" th:field="*{palletQuantity}">
           </div>
+
           <div class="form-group">
-            <label for="amount">지출액</label>
-            <input type="number" class="form-control" id="amount" th:field="*{amount}">
-            <div class="errorMessage" th:errors="*{amount}"></div>
+            <label for="boxQuantity">파레트 별 박스수량</label>
+            <input type="text" class="form-control" id="boxQuantity" th:field="*{boxQuantity}">
           </div>
-          <div class="form-group">
-            <label for="description">설명</label>
-            <input type="text" class="form-control" id="description" th:field="*{description}">
-          </div>
-          <button type="submit" class="btn btn-primary" th:text="등록"></button>
-          <a th:href="@{/expenses}" class="btn btn-secondary" th:text="취소" style="margin-left: 0.3rem"></a>
+
+
+          <button type="submit" class="btn btn-primary" th:text="|수량 수정|"></button>
+          <a th:href="@{/stocks/{id}(id = ${id})}" class="btn btn-secondary" th:text="취소" style="margin-left: 0.3rem"></a>
         </form>
       </div>
     </div>
