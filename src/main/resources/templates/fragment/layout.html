@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html th:fragment="layout(content)" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="utf-8">
@@ -345,43 +345,7 @@
 
 <!-- 컨텐츠 시작 -->
 <!-- Begin Page Content -->
-<div class="container-fluid">
-
-  <!-- Page Heading -->
-  <!--<h1 class="h3 mb-4 text-gray-800">승인 요청 상세조회</h1>
-  <div class="card shadow">
-    <div class="card-body">
-      <h5>회원 정보</h5>
-      <table class="table table-bordered">
-        <tr>
-          <th>이름</th>
-          <td>김철수</td>
-        </tr>
-        <tr>
-          <th>이메일</th>
-          <td>chulsoo@gmail.com</td>
-        </tr>
-        <tr>
-          <th>전화번호</th>
-          <td>010-9876-5432</td>
-        </tr>
-        <tr>
-          <th>회원 유형</th>
-          <td>사업자</td>
-        </tr>
-        <tr>
-          <th>신청 일자</th>
-          <td>2024-04-01</td>
-        </tr>
-      </table>
-      <div class="mt-3">
-        <button class="btn btn-success">승인</button>
-        <button class="btn btn-danger">반려</button>
-        <a href="admin_approval_requests.html" class="btn btn-secondary">목록으로</a>
-      </div>
-    </div>
-  </div>-->
-</div>
+<div th:insert="${content}" class="container-fluid"></div>
 <!-- 컨텐츠 끝 -->
 
 
@@ -427,9 +391,9 @@
     </div>
   </div>
 </div>
+<div th:replace="~{/fragment/bootstrap.html :: bootstrap-js}"></div>
+
   </div>
 
-
-<div th:replace="~{/fragment/bootstrap.html :: bootstrap-js}"></div>
 </body>
 </html>

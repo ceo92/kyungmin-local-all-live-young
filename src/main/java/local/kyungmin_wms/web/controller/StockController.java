@@ -43,7 +43,7 @@ public class StockController {
     List<Stock> stocks = stockService.findStocks(stockSearch, member);
     model.addAttribute("member" , member);
     model.addAttribute("stocks" , stocks);
-    return "stock/stocks";
+    return "stock/stocks_test";
   }
 
   @GetMapping("{id}")
@@ -55,7 +55,7 @@ public class StockController {
 
   @GetMapping("aa")
   public String fdjksd(){
-    return "fragment/layout";
+    return "stock/stocks_test";
   }
 
 

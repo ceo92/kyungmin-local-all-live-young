@@ -355,24 +355,6 @@
 <!--        <p class="mb-4">입고 요청 설명서를 작성해주세요</p>-->
         <br>
 
-        <!--드롭다운 상자-->
-        <!-- DataTales Example -->
-      <!--  <div class="card shadow mb-4">
-          <div class="card-header py-3">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-              <div class="dropdown-menu dropdown-menu-right animated&#45;&#45;fade-in" aria-labelledby="navbarDropdown"> &lt;!&ndash;창고 선택 dropbox &ndash;&gt;
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-
-          </div>-->
-
           <form th:object="${stockSearch}" th:action method="get">
 <!--            <h6 class="m-0 font-weight-bold text-primary">재고 검색</h6>-->
             <div>
@@ -484,8 +466,6 @@
 
   </div>
   <!-- End of Content Wrapper -->
-
-</div>
 <!-- End of Page Wrapper -->
 
 <!-- Scroll to Top Button-->
@@ -512,6 +492,7 @@
     </div>
   </div>
 </div>
+
 
 <div th:replace="~{/fragment/bootstrap.html :: bootstrap-js}"></div>
 
