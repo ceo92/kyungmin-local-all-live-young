@@ -31,8 +31,5 @@ public class WebConfig implements WebMvcConfigurer {
         .order(1);
   }*/
 
-  @Override
-  public void addFormatters(FormatterRegistry registry) {
-    //registry.addFormatter(new LocalDateTimeFormatter());
-  }
+  
 }
