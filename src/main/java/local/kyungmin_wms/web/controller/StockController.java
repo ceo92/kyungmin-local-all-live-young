@@ -53,11 +53,6 @@ public class StockController {
     return "stock/stock";
   }
 
-  @GetMapping("aa")
-  public String fdjksd(){
-    return "stock/stock";
-  }
-
 
 
 }

@@ -27,6 +27,12 @@
   <resultMap id="stockspp" type="Stock">
     <id column="stock_id" property="id"/>
     <result column="stock_code" property="stockCode"/>
+    <association property="warehouse" javaType="Warehouse">
+      <id column="warehouse_id" property="id"/>
+      <result column="warehouse_name" property="name"/>
+      <result column="warehouse_code" property="code"/>
+    </association>
+
     <association property="product" javaType="Product">
       <id column="product_id" property="id"/>
       <result column="product_name" property="productName"/>
@@ -47,6 +53,8 @@
 
       <association property="section" javaType="Section">
         <id column="section_id" property="id"/>
+        <result property="sectionCode" column="section_code"/>
+        <result property="sectionCapacity" column="section_capacity"/>
 
       </association>
     </association>
