@@ -26,7 +26,6 @@ public class StockSearch {
   private String productName; //LIKE 조건
   private String companyName; //LIKE 조건
 
-  //@DateTimeFormat(pattern = "yyyy MM dd")
   private LocalDateTime expirationDate; //유효기간 애초에 임박한 것만 알면 되지 않나 ? , 임박 시 빨간색으로 표시 !
 
 }
