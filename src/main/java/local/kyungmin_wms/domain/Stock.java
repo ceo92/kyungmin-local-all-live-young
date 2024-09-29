@@ -32,5 +32,13 @@ public class Stock {
 
   private Pallet pallet;
 
+  public Integer getTotalStockCount(){
+    int palletQuantity = pallet.getInboundRequestProduct().getPalletQuantity();
+    int boxQuantity = pallet.getInboundRequestProduct().getBoxQuantity();
+    return palletQuantity * boxQuantity;
+  }
+
+
+
 
 }

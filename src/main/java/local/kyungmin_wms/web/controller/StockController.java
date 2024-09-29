@@ -53,6 +53,7 @@ public class StockController {
   @GetMapping("{id}")
   public String getStock(@PathVariable("id") Long id , Model model){
     Stock stock = stockService.findStock(id);
+    model.addAttribute("totalStockCount", stock.getTotalStockCount());
     model.addAttribute("stock" , stock);
     return "stock/stock";
   }
