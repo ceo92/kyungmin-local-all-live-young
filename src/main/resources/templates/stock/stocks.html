@@ -416,7 +416,7 @@
 
             <div>
               <label for="expirationDate" th:text="|유효기간 : |"></label>
-              <input type="date" th:field="*{expirationDate}" id="expirationDate">
+              <input type="datetime-local" th:field="*{expirationDate}" id="expirationDate">
             </div>
 
             <button type="submit" th:text="|검색하기|" class="btn btn-primary"></button>
