@@ -362,7 +362,7 @@
 
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">재고</h1>
-        <!--<p class="mb-4">입고 요청 설명서를 작성해주세요</p>-->
+<!--        <p class="mb-4">입고 요청 설명서를 작성해주세요</p>-->
         <br>
 
         <!--드롭다운 상자-->
@@ -384,47 +384,61 @@
           </div>-->
 
           <form th:object="${stockSearch}" th:action method="get">
+<!--            <h6 class="m-0 font-weight-bold text-primary">재고 검색</h6>-->
             <div>
-              <label for="stockCode" th:text="|재고 코드 : |"></label>
-              <input type="text" th:field="*{stockCode}" id="stockCode">
-            </div>
 
-            <div>
-              <th:block th:each="storeTemperature : ${storeTemperatures}">
-                <input type="checkbox" th:field="*{storeTemperatures}" th:value="${storeTemperature.name()}"> <!-- Boolean 아니면 무조건 value 존재해야됨 , boolean은 true false만 넘겨주면 되지만, non -boolean은 어떤 값을 넘길지를 지정해줘야됨!-->
-                <label th:for="${#ids.prev('storeTemperatures')}" th:text="${storeTemperature.description}"></label>
+              <th:block>
+                <label for="stockCode" th:text="|재고 코드 : |"></label>
+                <input type="text" th:field="*{stockCode}" id="stockCode">
+              </th:block>
+
+              <th:block>
+                <label for="productName" th:text="|의약품 이름 : |"></label>
+                <input type="text" th:field="*{productName}" id="productName">
+              </th:block>
+
+              <th:block>
+                <label for="companyName" th:text="|회사 이름 : |"></label>
+                <input type="text" th:field="*{companyName}" id="companyName">
+              </th:block>
+
+              <th:block>
+                <label for="expirationDate" th:text="|유효기간 : |"></label>
+                <input type="datetime-local" th:field="*{expirationDate}" id="expirationDate">
               </th:block>
             </div>
 
-            <div>
-              <th:block th:each="productType : ${productTypes}">
-                <input type="checkbox" th:field="*{productTypes}" th:value="${productType.name()}"> <!-- Boolean 아니면 무조건 value 존재해야됨 , boolean은 true false만 넘겨주면 되지만, non -boolean은 어떤 값을 넘길지를 지정해줘야됨!-->
-                <label th:for="${#ids.prev('productTypes')}" th:text="${productType.description}"></label>
-              </th:block>
-            </div>
+
+              <div>
+                보관 온도 선택 :
+                <th:block th:each="storeTemperature : ${storeTemperatures}">
+                  <input type="checkbox" th:field="*{storeTemperatures}" th:value="${storeTemperature.name()}"> <!-- Boolean 아니면 무조건 value 존재해야됨 , boolean은 true false만 넘겨주면 되지만, non -boolean은 어떤 값을 넘길지를 지정해줘야됨!-->
+                  <label th:for="${#ids.prev('storeTemperatures')}" th:text="${storeTemperature.description}"></label>
+                </th:block>
+              </div>
 
 
-            <div>
-              <label for="productName" th:text="|의약품 이름 : |"></label>
-              <input type="text" th:field="*{productName}" id="productName">
-            </div>
+              <div>
+                의약품 종류 선택 :
+                <th:block th:each="productType : ${productTypes}">
+                  <input type="checkbox" th:field="*{productTypes}" th:value="${productType.name()}"> <!-- Boolean 아니면 무조건 value 존재해야됨 , boolean은 true false만 넘겨주면 되지만, non -boolean은 어떤 값을 넘길지를 지정해줘야됨!-->
+                  <label th:for="${#ids.prev('productTypes')}" th:text="${productType.description}"></label>
+                </th:block>
 
-            <div>
-              <label for="companyName" th:text="|회사 이름 : |"></label>
-              <input type="text" th:field="*{companyName}" id="companyName">
-            </div>
+                <button type="submit" style="float:right" th:text="|검색하기|" class="btn btn-primary"></button>
 
-            <div>
-              <label for="expirationDate" th:text="|유효기간 : |"></label>
-              <input type="datetime-local" th:field="*{expirationDate}" id="expirationDate">
-            </div>
+              </div>
 
-            <button type="submit" th:text="|검색하기|" class="btn btn-primary"></button>
 
-          </form>
+
+
+            </form>
+
+        <hr>
 
           <div class="card-body">
             <div class="table-responsive">
+<!--              <h6 class="m-0 font-weight-bold text-primary">재고 목록</h6>-->
               <table class="table table-bordered" id="inputTable" width="100%" cellspacing="0">
                 <thead>
                   <!--<th th:if="${member.roleType.equals('ADMIN')}" th:text="|창고 코드|"></th>
@@ -439,9 +453,10 @@
                 </thead>
                 <tbody>
                 <tr th:each="stock : ${stocks}">
+                  <td th:text="${stockStat.index}"></td>
                   <!--<td th:if="${member.roleType.equals('ADMIN')}" th:text="${stock.warehouse.warehouseCode}"></td>
                   <td th:if="${member.roleType.equals('ADMIN')}" th:text="${stock.warehouse.warehouseName}"></td>-->
-                  <td th:text="${stockStat.index}"></td>
+
                   <td th:text="${stock.stockCode}"></td>
                   <td th:text="${stock.product.productName}"></td>
                   <td th:text="${stock.product.storeTemperature}"></td>
