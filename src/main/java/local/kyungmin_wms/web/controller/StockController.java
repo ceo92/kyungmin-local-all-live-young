@@ -39,7 +39,6 @@ public class StockController {
 
   @GetMapping
   public String getStocks(@ModelAttribute("stockSearch") StockSearch stockSearch, Model model , @Login Member member){
-    log.info("date = {}" , stockSearch.getExpirationDate());
     List<Stock> stocks = stockService.findStocks(stockSearch, member);
     model.addAttribute("member" , member);
     model.addAttribute("stocks" , stocks);
@@ -49,6 +48,8 @@ public class StockController {
   @GetMapping("{id}")
   public String getStock(@PathVariable("id") Long id , Model model){
     Stock stock = stockService.findStock(id);
+    System.out.println("stock.getModDate() = " + stock.getModDate());
+    System.out.println("stock.getRegDate() = " + stock.getRegDate());
     model.addAttribute("stock" , stock);
     return "stock/stock";
   }

@@ -27,6 +27,8 @@
   <resultMap id="stockspp" type="Stock">
     <id column="stock_id" property="id"/>
     <result column="stock_code" property="stockCode"/>
+    <result column="reg_date" property="regDate"/>
+    <result column="mod_date" property="modDate"/>
     <association property="warehouse" javaType="Warehouse">
       <id column="warehouse_id" property="id"/>
       <result column="warehouse_name" property="name"/>
