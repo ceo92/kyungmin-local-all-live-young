@@ -43,7 +43,7 @@ public class StockController {
     List<Stock> stocks = stockService.findStocks(stockSearch, member);
     model.addAttribute("member" , member);
     model.addAttribute("stocks" , stocks);
-    return "stock/stocks_test";
+    return "stock/stocks";
   }
 
   @GetMapping("{id}")
