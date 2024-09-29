@@ -429,6 +429,7 @@
                 <thead>
                   <!--<th th:if="${member.roleType.equals('ADMIN')}" th:text="|창고 코드|"></th>
                   <th th:if="${member.roleType.equals('ADMIN')}" th:text="|창고 이름|"></th>-->
+                  <th>재고 번호</th>
                   <th>재고 코드</th>
                   <th>의약품 이름</th>
                   <th>보관 온도</th>
@@ -440,6 +441,7 @@
                 <tr th:each="stock : ${stocks}">
                   <!--<td th:if="${member.roleType.equals('ADMIN')}" th:text="${stock.warehouse.warehouseCode}"></td>
                   <td th:if="${member.roleType.equals('ADMIN')}" th:text="${stock.warehouse.warehouseName}"></td>-->
+                  <td th:text="${stockStat.index}"></td>
                   <td th:text="${stock.stockCode}"></td>
                   <td th:text="${stock.product.productName}"></td>
                   <td th:text="${stock.product.storeTemperature}"></td>
