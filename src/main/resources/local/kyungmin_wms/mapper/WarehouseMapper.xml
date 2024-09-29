@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="local.kyungmin_wms.mapper.StockMapper">
+
+  <insert id="save" keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO WAREHOUSE(warehouse_name , warehouse_code , warehouse_road_address , warehouse_jibun_address , warehouse_zipcode , warehouse_details_address)
+    values(#{name} , #{code} , #{address.roadNameAddress} , #{address.jibunAddress} , #{address.zipcode}, #{address.detailsAddress})
+  </insert>
+
+
+  <update id="update">
+    UPDATE WAREHOUSE
+    SET warehouse_name=#{name}, warehouse_code=#{code}, warehouse_road_address=#{address.roadNameAddress} ,
+    warehouse_jibun_address=#{address.jibunAddress} , warehouse_zipcode = #{address.zipcode} ,
+    warehouse_details_address = #{address.detailsAddress}
+    WHERE id = #{id}
+  </update>
+
+
+  <select id="findById">
+    SELECT *
+    FROM WAREHOUSE
+    WHERE id = #{id}
+  </select>
+
+  <select id="findAll">
+    SELECT *
+    FROM WAREHOUSE
+    <where>
+      <if test="name != null and !name.equals('')">
+        and name like concat('%' , #{name} , '%')
+      </if>
+
+      <if test="code != null and !code.equals('')">
+        and code like concat('%' , #{code} , '%')
+      </if>
+    </where>
+  </select>
+
+  <delete id="delete">
+    DELETE FROM WAREHOUSE;
+  </delete>
+
+
+
+</mapper>

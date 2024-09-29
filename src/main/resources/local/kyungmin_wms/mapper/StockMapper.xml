@@ -7,8 +7,6 @@
     UPDATE INBOUND_REQUEST_PRODUCT i , STOCK s
     SET i.pallet_quantity = #{stockUpdateDto.palletQuantity}  , i.box_quantity = #{stockUpdateDto.boxQuantity} , s.mod_date = NOW()
     WHERE inbound_request_product_id = #{inboundRequestProductId} AND stock_id=#{stockId};
-
-
   </update>
 
 
@@ -120,7 +118,6 @@
     <where>
       <if test="stockSearch.stockCode != null and !stockSearch.stockCode.equals('')">
         and s.stock_code like concat('%' , #{stockSearch.stockCode} , '%')
-        <!--and s.stock_code = #{stockSearch.stockCode}-->
       </if>
 
       <if test="stockSearch.storeTemperatures != null and stockSearch.storeTemperatures.size() > 0">

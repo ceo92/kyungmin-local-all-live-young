@@ -5,11 +5,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter(AccessLevel.PRIVATE)
-public class Address {
-  private String roadNameAddress;
-  private String jibunAddress;
-  private String detailsAddress;
-  private String zipcode;
+  public class Address {
+    private String roadNameAddress;
+    private String jibunAddress;
+    private String detailsAddress;
+    private String zipcode;
 
 
 
