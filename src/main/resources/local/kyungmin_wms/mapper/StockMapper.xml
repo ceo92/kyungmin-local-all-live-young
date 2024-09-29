@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="local.kyungmin_wms.mapper.StockMapper">
 
-  <select id="findById" resultMap="stocksp">
+  <select id="findById" resultMap="stockspp">
     SELECT *
     FROM STOCK s
     JOIN PRODUCT p
@@ -24,6 +24,33 @@
   </select>
 
 
+  <resultMap id="stockspp" type="Stock">
+    <id column="stock_id" property="id"/>
+    <result column="stock_code" property="stockCode"/>
+    <association property="product" javaType="Product">
+      <id column="product_id" property="id"/>
+      <result column="product_name" property="productName"/>
+      <result column="store_temperature" property="storeTemperature"/>
+      <result column="product_type" property="productType"/>
+      <association property="member" javaType="Member">
+        <id column="member_id" property="id"/>
+        <result column="name" property="name"/>
+      </association>
+    </association>
+
+    <association property="pallet" javaType="Pallet">
+      <id column="pallet_id" property="id"/>
+      <association property="inboundRequestProduct" javaType="InboundRequestProduct">
+        <id column="inbound_request_product_id" property="id"/>
+        <result property="expirationDate" column="expiration_date"/>
+      </association>
+
+      <association property="section" javaType="Section">
+        <id column="section_id" property="id"/>
+
+      </association>
+    </association>
+  </resultMap>
 
 
 
