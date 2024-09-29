@@ -46,12 +46,18 @@ public class StockController {
     return "stock/stocks";
   }
 
-  @GetMapping("/{id}")
+  @GetMapping("{id}")
   public String getStock(@PathVariable("id") Long id , Model model){
-
-    model.addAttribute();
+    Stock stock = stockService.findStock(id);
+    model.addAttribute("stock" , stock);
     return "stock/stock";
   }
+
+  @GetMapping("aa")
+  public String fdjksd(){
+    return "stock/stock";
+  }
+
 
 
 }
