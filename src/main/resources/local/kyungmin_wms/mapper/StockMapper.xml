@@ -3,10 +3,30 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="local.kyungmin_wms.mapper.StockMapper">
 
-  <select id="findById" resultType="Stock">
+  <select id="findById" resultMap="stocksp">
     SELECT *
-    FROM Stock where id = #{id}
+    FROM STOCK s
+    JOIN PRODUCT p
+    ON s.product_id = p.product_id
+    JOIN MEMBER m
+    ON p.member_id = m.member_id
+    JOIN PALLET pa
+    ON pa.pallet_id = s.pallet_id
+    JOIN INBOUND_REQUEST_PRODUCT i
+    ON i.inbound_request_product_id = pa.inbound_request_product_id
+    JOIN WAREHOUSE w
+    ON s.warehouse_id = w.warehouse_id
+    JOIN SECTION sec
+    ON pa.section_id = sec.section_id
+    <where>
+      s.stock_id = #{id}
+    </where>
   </select>
+
+
+
+
+
 
   <resultMap id="stocksp" type="Stock">
     <id column="stock_id" property="id"/>

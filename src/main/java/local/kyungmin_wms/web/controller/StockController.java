@@ -1,10 +1,7 @@
 package local.kyungmin_wms.web.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import local.kyungmin_wms.constant.ProductType;
-import local.kyungmin_wms.constant.RoleType;
 import local.kyungmin_wms.constant.StoreTemperature;
 import local.kyungmin_wms.domain.Member;
 import local.kyungmin_wms.domain.Stock;
@@ -17,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -42,10 +40,17 @@ public class StockController {
   @GetMapping
   public String getStocks(@ModelAttribute("stockSearch") StockSearch stockSearch, Model model , @Login Member member){
     log.info("date = {}" , stockSearch.getExpirationDate());
-    List<Stock> stocks = stockService.findAll(stockSearch, member);
+    List<Stock> stocks = stockService.findStocks(stockSearch, member);
     model.addAttribute("member" , member);
     model.addAttribute("stocks" , stocks);
     return "stock/stocks";
+  }
+
+  @GetMapping("/{id}")
+  public String getStock(@PathVariable("id") Long id , Model model){
+
+    model.addAttribute();
+    return "stock/stock";
   }
 
 

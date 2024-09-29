@@ -16,8 +16,11 @@ public class StockService {
 
   private final StockMapper stockMapper;
 
-  public List<Stock> findAll(StockSearch stockSearch, Member member) {
+  public List<Stock> findStocks(StockSearch stockSearch, Member member) {
     return stockMapper.findAll(stockSearch, member);
+  }
 
+  public Stock findStock(Long id){
+    return stockMapper.findById(id).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 재고입니다."));
   }
 }

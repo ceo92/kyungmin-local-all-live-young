@@ -443,26 +443,31 @@
                 <thead>
                   <!--<th th:if="${member.roleType.equals('ADMIN')}" th:text="|창고 코드|"></th>
                   <th th:if="${member.roleType.equals('ADMIN')}" th:text="|창고 이름|"></th>-->
-                  <th>재고 번호</th>
+                  <th>번호</th>
                   <th>재고 코드</th>
                   <th>의약품 이름</th>
                   <th>보관 온도</th>
                   <th>의약품 종류</th>
                   <th>회사 이름</th>
                   <th>유효기간</th>
+                  <th>상세보기</th>
+
                 </thead>
                 <tbody>
                 <tr th:each="stock : ${stocks}">
-                  <td th:text="${stockStat.index}"></td>
-                  <!--<td th:if="${member.roleType.equals('ADMIN')}" th:text="${stock.warehouse.warehouseCode}"></td>
-                  <td th:if="${member.roleType.equals('ADMIN')}" th:text="${stock.warehouse.warehouseName}"></td>-->
+                  <a th:href="@{{id}(id = ${stock.id})}">
+                    <td th:text="${stockStat.index}"></td>
+                    <!--<td th:if="${member.roleType.equals('ADMIN')}" th:text="${stock.warehouse.warehouseCode}"></td>
+                    <td th:if="${member.roleType.equals('ADMIN')}" th:text="${stock.warehouse.warehouseName}"></td>-->
 
-                  <td th:text="${stock.stockCode}"></td>
-                  <td th:text="${stock.product.productName}"></td>
-                  <td th:text="${stock.product.storeTemperature}"></td>
-                  <td th:text="${stock.product.productType}"></td>
-                  <td th:text="${stock.product.member.name}"></td>
-                  <td th:text="${{stock.pallet.inboundRequestProduct.expirationDate}}"></td>
+                    <td th:text="${stock.stockCode}"></td>
+                    <td th:text="${stock.product.productName}"></td>
+                    <td th:text="${stock.product.storeTemperature}"></td>
+                    <td th:text="${stock.product.productType}"></td>
+                    <td th:text="${stock.product.member.name}"></td>
+                    <td th:text="${{stock.pallet.inboundRequestProduct.expirationDate}}"></td>
+                    <td><button th:text="|상세보기|" class="btn btn-primary" th:onclick="|location.href='@{/stocks/{id}(id = ${stock.id})}'|"></button></td>
+                  </a>
                 </tr>
                 </tbody>
               </table>
