@@ -2,6 +2,12 @@
 <html th:replace="~{fragment/layout.html :: layout(~{::section})}" xmlns:th="http://www.thymeleaf.org">
 
   <section>
+    <style>
+      .field-error {
+          border-color: #dc3545;
+          color: #dc3545;
+      }
+    </style>
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"></h1>
     <div class="card shadow">
@@ -33,12 +39,14 @@
 
           <div class="form-group">
             <label for="palletQuantity">파레트 수량</label>
-            <input type="text" class="form-control" id="palletQuantity" th:field="*{palletQuantity}">
+            <input type="text" class="form-control" id="palletQuantity" th:field="*{palletQuantity}" th:errorclass="field-error">
+            <div th:errors="*{palletQuantity}" class="field-error"></div>
           </div>
 
           <div class="form-group">
-            <label for="boxQuantity">파레트 별 박스수량</label>
-            <input type="text" class="form-control" id="boxQuantity" th:field="*{boxQuantity}">
+            <label for="boxQuantity">파레트 별 박스 수량</label>
+            <input type="text" class="form-control" id="boxQuantity" th:field="*{boxQuantity}" th:errorclass="field-error">
+            <div th:errors="*{boxQuantity}" class="field-error"></div>
           </div>
 
 
