@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -48,11 +49,26 @@ public class StockController {
   @GetMapping("{id}")
   public String getStock(@PathVariable("id") Long id , Model model){
     Stock stock = stockService.findStock(id);
-    System.out.println("stock.getModDate() = " + stock.getModDate());
-    System.out.println("stock.getRegDate() = " + stock.getRegDate());
     model.addAttribute("stock" , stock);
     return "stock/stock";
   }
+
+
+  @GetMapping("{id}/update")
+  public String updateStockForm(@PathVariable("id") Long id , Model model){
+    Stock stock = stockService.findStock(id);
+
+    model.addAttribute("stock" , stock);
+    return "stock/updateForm";
+  }
+
+  /*@PostMapping("{id}/update")
+  public String updateStockForm(){
+
+  }
+*/
+
+
 
 
 

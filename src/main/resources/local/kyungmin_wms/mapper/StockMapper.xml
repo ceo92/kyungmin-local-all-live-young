@@ -3,7 +3,16 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="local.kyungmin_wms.mapper.StockMapper">
 
-  <select id="findById" resultMap="stockspp">
+  <update id="update">
+    UPDATE INBOUND_REQUEST_PRODUCT
+    SET  = #{stock.quantity}  , mod_date = #{LocalDateTime.now()}
+    where id = #{id}
+  </update>
+
+
+
+
+  <select id="findById" resultMap="stock">
     SELECT *
     FROM STOCK s
     JOIN PRODUCT p
@@ -24,7 +33,7 @@
   </select>
 
 
-  <resultMap id="stockspp" type="Stock">
+  <resultMap id="stock" type="Stock">
     <id column="stock_id" property="id"/>
     <result column="stock_code" property="stockCode"/>
     <result column="reg_date" property="regDate"/>
@@ -51,6 +60,7 @@
       <association property="inboundRequestProduct" javaType="InboundRequestProduct">
         <id column="inbound_request_product_id" property="id"/>
         <result property="expirationDate" column="expiration_date"/>
+        <result property="manufactureNumber" column="manufacture_number"/>
       </association>
 
       <association property="section" javaType="Section">
@@ -65,7 +75,7 @@
 
 
 
-  <resultMap id="stocksp" type="Stock">
+  <resultMap id="stocks" type="Stock">
     <id column="stock_id" property="id"/>
     <result column="stock_code" property="stockCode"/>
     <association property="product" javaType="Product">
@@ -90,7 +100,7 @@
 
 
   <!--연관관계 바꾸기 , 연관관계 맺고 있는 테이블의 위치 ㅇㅇ-->
-  <select id="findAll" resultMap="stocksp">
+  <select id="findAll" resultMap="stocks">
     SELECT *
     FROM STOCK s
     JOIN PRODUCT p
@@ -143,47 +153,14 @@
 
 
     </where>
-
-
-
-
-
-
-
-    <!--<where>
-      <if test="stockSearch.stockCode != null and !stockSearch.stockCode.equals('')">
-        and s.stock_code = #{stockSearch.stockCode}
-      </if>
-
-      <if test="member.roleType == @local.kyungmin_wms.constant.RoleType@ADMIN">
-        and w.warehouse_code = #{stockSearch.warehouseCode}
-        and w.warehouse_name = #{stockSearch.warehouseName}
-      </if>
-
-      &lt;!&ndash;<foreach collection="stockSearch.storeTemperatures" item="storeTemperature" open="(" separator="," close=")" > &lt;!&ndash; 문제 확인해보자&ndash;&gt;
-        <if test="storeTemperature != null and !storeTemperature.equals('')">
-          and p.store_temperature = #{storeTemperature}
-        </if>
-      </foreach>
-
-      <foreach collection="stockSearch.productTypes" item="productType" open="(" separator="," close=")" >
-        <if test="productType != null and !productType.equals('')">
-          and p.product_type = #{productType}
-        </if>
-      </foreach>&ndash;&gt;
-
-
-
-
-
-    </where>-->
   </select>
 
 
+<!--
 
   <resultMap id="stocks" type="Stock">
     <id column="stock_id" property="id"/>
-    <!-- column : 테이블의 칼럼명 , property : 자바 도메인의 필드명-->
+    &lt;!&ndash; column : 테이블의 칼럼명 , property : 자바 도메인의 필드명&ndash;&gt;
     <result column="stock_code" property="stockCode"/>
     <result column="reg_date" property="regDate"/>
     <result column="mod_date" property="modDate"/>
@@ -286,7 +263,7 @@
       </association>
       <association property="section" javaType="Section" column="section_id">
         <id column="section_id" property="id"/>
-        <result column="store_temperature" property="storeTemperature"/> <!--이 부분도 다 바꿔줘야 하네-->
+        <result column="store_temperature" property="storeTemperature"/> &lt;!&ndash;이 부분도 다 바꿔줘야 하네&ndash;&gt;
         <result column="product_type" property="productType"/>
         <result column="section_capacity" property="sectionCapacity"/>
       </association>
@@ -307,20 +284,9 @@
     </association>
   </resultMap>
 
-
-
-
-
-
+-->
   <!--누가 상품 등록했는지는 나중에 , 로그인까지 구현해야됨-->
-  <update id="update">
-    update Stock
-    set quantity = #{stock.quantity}  , mod_date = #{LocalDateTime.now()}
-    where id = #{id}
-  </update>
 
 
 
 </mapper>
-  <!-- 그냥 조인만 하면 전부 다 가져오므로 member_id가 #{id}인 즉 한 회원정보만 가져오게-->
-  <!--왜 Item일까 그냥 리턴값  하나하나가 Itemdㅣㄴ가 -->

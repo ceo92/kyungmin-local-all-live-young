@@ -3,10 +3,10 @@
 
   <section>
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"></h1>
+    <h1 class="h3 mb-4 text-gray-800">재고 상세</h1>
     <div class="card shadow">
       <div class="card-body">
-        <h5>지출 상세</h5>
+        <h5>재고 상세</h5>
         <p></p>
         <table class="table table-bordered">
 
@@ -42,10 +42,34 @@
           </tr>
 
           <tr>
+            <th>제조번호</th>
+            <td th:text="${{stock.pallet.inboundRequestProduct.manufactureNumber}}"></td>
+          </tr>
+
+          <tr>
             <th>유통기한</th>
             <td th:text="${{stock.pallet.inboundRequestProduct.expirationDate}}"></td>
           </tr>
 
+          <tr>
+            <th>창고 코드</th>
+            <td th:text="${stock.warehouse.name}"></td>
+          </tr>
+
+          <tr>
+            <th>창고 이름</th>
+            <td th:text="${stock.warehouse.code}"></td>
+          </tr>
+
+          <tr>
+            <th>섹션 번호</th>
+            <td th:text="${stock.pallet.section.sectionCode}"></td>
+          </tr>
+
+          <tr>
+            <th>섹션 용량</th>
+            <td th:text="${stock.pallet.section.sectionCapacity}"></td>
+          </tr>
 
         </table>
         <div style="display: flex; align-items: center;">
