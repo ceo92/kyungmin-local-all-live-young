@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor @NoArgsConstructor
 public class WarehouseSearch {
-  private String regionName;
+  private String warehouseCode;
   private String warehouseName;
 }
