@@ -14,15 +14,30 @@
     SET warehouse_name=#{name}, warehouse_code=#{code}, warehouse_road_address=#{address.roadNameAddress} ,
     warehouse_jibun_address=#{address.jibunAddress} , warehouse_zipcode = #{address.zipcode} ,
     warehouse_details_address = #{address.detailsAddress}
-    WHERE id = #{id}
+    WHERE warehouse_id = #{id}
   </update>
 
 
-  <select id="findById">
+  <select id="findById" resultMap="warehouse">
     SELECT *
     FROM WAREHOUSE
-    WHERE id = #{id}
+    WHERE warehouse_id = #{id}
   </select>
+
+  <resultMap id="warehouse" type="Warehouse">
+    <id column="warehouse_id" property="id"/>
+    <result column="warehouse_name" property="name"/>
+    <result column="warehouse_code" property="code"/>
+    <association property="address" javaType="Address">
+      <result column="warehouse_road_address" property="roadNameAddress"/>
+      <result column="warehouse_jibun_address" property="jibunAddress"/>
+      <result column="warehouse_details_address" property="detailsAddress"/>
+      <result column="warehouse_zipcode" property="zipcode"/>
+
+    </association>
+  </resultMap>
+
+
 
   <select id="findAll">
     SELECT *

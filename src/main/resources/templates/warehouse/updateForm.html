@@ -12,22 +12,21 @@
   <h1 class="h3 mb-4 text-gray-800"></h1>
   <div class="card shadow">
     <div class="card-body">
-      <h5>창고 등록</h5>
+      <h5>창고 수정</h5>
       <p></p>
       <form method="post" th:action th:object="${warehouse}">
+        <!--          <input type="hidden" th:field="*{id}">-->
+
+        <div class="form-group">
+          <label for="code">창고 코드</label>
+          <input type="text" class="form-control" id="code" th:field="*{code}" disabled>
+        </div>
 
         <div class="form-group">
           <label for="name">창고 이름</label>
           <input type="text" class="form-control" id="name" th:field="*{name}" th:errorclass="field-error">
-          <div th:errors="*{name}" class="field-error"></div>
+          <div th:errors="*{detailsAddress}" class="field-error"></div>
         </div>
-
-        <div class="form-group">
-          <label for="code">창고 코드</label>
-          <input type="text" class="form-control" id="code" th:field="*{code}" th:errorclass="field-error">
-          <div th:errors="*{code}" class="field-error"></div>
-        </div>
-
 
         <div class="form-group">
           <label for="zipcode">우편 번호</label>
@@ -57,15 +56,13 @@
           <div th:errors="*{detailsAddress}" class="field-error"></div>
         </div>
 
-
-        <button type="submit" class="btn btn-primary" th:text="|창고 등록 요청|"></button>
-        <a th:href="@{/warehouses}" class="btn btn-secondary" th:text="취소" style="margin-left: 0.3rem"></a>
+        <button type="submit" class="btn btn-primary" th:text="|창고 수정|"></button>
+        <a th:href="@{/warehouses/{id}(id = ${id})}" class="btn btn-secondary" th:text="취소" style="margin-left: 0.3rem"></a>
       </form>
     </div>
   </div>
 
   <div th:replace="~{fragment/address-search.html :: address-search}"></div>
-
 </section>
 
 </html>

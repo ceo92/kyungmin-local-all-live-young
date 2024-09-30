@@ -4,6 +4,7 @@ import local.kyungmin_wms.domain.Member;
 import local.kyungmin_wms.domain.Warehouse;
 import local.kyungmin_wms.dto.WarehouseSaveDto;
 import local.kyungmin_wms.dto.WarehouseSearch;
+import local.kyungmin_wms.dto.WarehouseUpdateDto;
 import local.kyungmin_wms.login_temp.Login;
 import local.kyungmin_wms.service.WarehouseService;
 import lombok.RequiredArgsConstructor;
@@ -44,6 +45,30 @@ public class WarehouseController {
   }
 
 
+  @GetMapping("{id}/update")
+  public String updateWarehouseForm(@PathVariable("id")Long id ,  Model model){
+    Warehouse warehouse = warehouseService.findWarehouse(id);
+    WarehouseUpdateDto warehouseUpdateDto = new WarehouseUpdateDto(warehouse.getName() , warehouse.getCode() ,
+        warehouse.getAddress().getRoadNameAddress() , warehouse.getAddress().getJibunAddress() ,
+        warehouse.getAddress().getZipcode() , warehouse.getAddress().getDetailsAddress());
+    model.addAttribute("warehouse", warehouseUpdateDto);
+    model.addAttribute("id", warehouse.getId());
+    return "warehouse/updateForm";
+  }
+
+  @PostMapping("{id}/update")
+  public String updateWarehouseForm(@Validated @ModelAttribute("warehouse")WarehouseUpdateDto warehouseUpdateDto ,@PathVariable("id") Long id ,
+      BindingResult bindingResult , RedirectAttributes redirectAttributes , @Login Member member){
+    if (bindingResult.hasErrors()){
+      return "warehouse/updateForm";
+    }
+    warehouseService.updateWarehouse(id , warehouseUpdateDto);
+    redirectAttributes.addAttribute("id", id);
+    redirectAttributes.addAttribute("status", true);
+    return "redirect:/warehouses/{id}";
+  }
+
+
 
   @GetMapping
   public String getWarehouses(@ModelAttribute("warehouseSearch") WarehouseSearch warehouseSearch,
@@ -61,10 +86,6 @@ public class WarehouseController {
     return "warehouse/warehouse";
   }
 
-  @GetMapping("aa")
-  public String sufjdujfsd(){
-    return "warehouse/address_input";
-  }
 
 
 
