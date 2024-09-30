@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class WarehouseService {
   private final WarehouseMapper warehouseMapper;
 
-  public Long saveWarehouse(WarehouseSaveDto warehouseSaveDto){
+  public void saveWarehouse(WarehouseSaveDto warehouseSaveDto){
     Warehouse warehouse = Warehouse.builder().name(warehouseSaveDto.getName())
         .code(warehouseSaveDto.getCode()).address(new Address(warehouseSaveDto.getRoadNameAddress()
             , warehouseSaveDto.getJibunAddress()

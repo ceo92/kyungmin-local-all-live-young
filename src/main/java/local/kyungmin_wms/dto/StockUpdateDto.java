@@ -8,7 +8,7 @@ import lombok.Data;
 public class StockUpdateDto {
   private String stockCode;
   private String productName;
-  private String companyName;
+  private String name;
   private String manufactureNumber;
   private Integer palletQuantity;
   private Integer boxQuantity;

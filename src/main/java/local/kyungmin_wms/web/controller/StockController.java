@@ -68,16 +68,19 @@ public class StockController {
         stock.getPallet().getInboundRequestProduct().getManufactureNumber() ,
         stock.getPallet().getInboundRequestProduct().getPalletQuantity() ,
         stock.getPallet().getInboundRequestProduct().getBoxQuantity());
-    model.addAttribute("id", id);
-    model.addAttribute("stock" , stockUpdateDto);
+    model.addAttribute("id" , id);
+    model.addAttribute("stock", stockUpdateDto);
     return "stock/updateForm";
   }
 
   @PostMapping("{id}/update")
-  public String updateStockForm(@Validated @ModelAttribute("stock") StockUpdateDto stockUpdateDto , BindingResult bindingResult ,@PathVariable("id") Long id ,  RedirectAttributes redirectAttributes , @Login Member member){
+  public String updateStockForm(@Validated @ModelAttribute("stock") StockUpdateDto stockUpdateDto , BindingResult bindingResult ,@PathVariable("id") Long id ,
+      RedirectAttributes redirectAttributes , @Login Member member){
     if (bindingResult.hasErrors()){
       return "stock/updateForm";
     }
+    System.out.println(stockUpdateDto.getPalletQuantity());
+    System.out.println(stockUpdateDto.getBoxQuantity());
     stockService.updateQuantity(id , stockUpdateDto);
     redirectAttributes.addAttribute("id" , id);
     redirectAttributes.addAttribute("status" , true);

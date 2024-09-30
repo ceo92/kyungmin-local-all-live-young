@@ -5,8 +5,8 @@
 
   <update id="update">
     UPDATE INBOUND_REQUEST_PRODUCT i , STOCK s
-    SET i.pallet_quantity = #{stockUpdateDto.palletQuantity}  , i.box_quantity = #{stockUpdateDto.boxQuantity} , s.mod_date = NOW()
-    WHERE inbound_request_product_id = #{inboundRequestProductId} AND stock_id=#{stockId};
+    SET i.pallet_quantity = #{inboundRequestProduct.palletQuantity}  , i.box_quantity = #{inboundRequestProduct.boxQuantity} , s.mod_date = NOW()
+    WHERE i.inbound_request_product_id = #{inboundRequestProduct.id} AND s.stock_id=#{stockId};
   </update>
 
 

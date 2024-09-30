@@ -28,5 +28,10 @@ public class InboundRequestProduct {
   private InboundRequest inboundRequest;
   private Product product;
 
+  public void updateTotalQuantity(Integer palletQuantity , Integer boxQuantity){
+    this.palletQuantity = palletQuantity;
+    this.boxQuantity = boxQuantity;
+  }
+
 
 }

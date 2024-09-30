@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="local.kyungmin_wms.mapper.StockMapper">
+<mapper namespace="local.kyungmin_wms.mapper.WarehouseMapper">
 
   <insert id="save" keyProperty="id" useGeneratedKeys="true">
     INSERT INTO WAREHOUSE(warehouse_name , warehouse_code , warehouse_road_address , warehouse_jibun_address , warehouse_zipcode , warehouse_details_address)
