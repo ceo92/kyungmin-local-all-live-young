@@ -79,8 +79,6 @@ public class StockController {
     if (bindingResult.hasErrors()){
       return "stock/updateForm";
     }
-    System.out.println(stockUpdateDto.getPalletQuantity());
-    System.out.println(stockUpdateDto.getBoxQuantity());
     stockService.updateQuantity(id , stockUpdateDto);
     redirectAttributes.addAttribute("id" , id);
     redirectAttributes.addAttribute("status" , true);

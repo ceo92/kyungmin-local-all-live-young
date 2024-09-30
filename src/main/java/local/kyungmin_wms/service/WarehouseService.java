@@ -28,6 +28,13 @@ public class WarehouseService {
 
   public void updateWarehouse(Long id , WarehouseUpdateDto warehouseUpdateDto){
     Warehouse warehouse = findWarehouse(id);
+    warehouse.changeWarehouse(warehouseUpdateDto.getName() ,
+        warehouseUpdateDto.getCode() ,
+        warehouseUpdateDto.getRoadNameAddress() ,
+        warehouseUpdateDto.getJibunAddress() ,
+        warehouseUpdateDto.getDetailsAddress(),
+        warehouseUpdateDto.getZipcode());
+    warehouseMapper.update(warehouse);
   }
 
   public Warehouse findWarehouse(Long id){

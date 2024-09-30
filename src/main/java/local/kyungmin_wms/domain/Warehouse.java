@@ -25,7 +25,7 @@ public class Warehouse {
   public void changeWarehouse(String name , String code , String roadNameAddress , String jibunAddress , String detailsAddress ,String zipcode){
     this.name = name;
     this.code =code;
-//    address = new Address();
+    this.address = new Address(roadNameAddress, jibunAddress, detailsAddress, zipcode);
   }
 
 
