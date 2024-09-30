@@ -11,7 +11,7 @@
 
   <update id="update">
     UPDATE WAREHOUSE
-    SET warehouse_name=#{name}, warehouse_code=#{code}, warehouse_road_address=#{address.roadNameAddress} ,
+    SET warehouse_name=#{name} , warehouse_road_address=#{address.roadNameAddress} ,
     warehouse_jibun_address=#{address.jibunAddress} , warehouse_zipcode = #{address.zipcode} ,
     warehouse_details_address = #{address.detailsAddress}
     WHERE warehouse_id = #{id}

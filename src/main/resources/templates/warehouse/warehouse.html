@@ -6,7 +6,8 @@
   <h1 class="h3 mb-4 text-gray-800">창고 상세</h1>
   <div class="card shadow">
     <div class="card-body">
-      <h4 th:if="${param.status}" th:text="|창고 등록이 완료되었습니다!|"></h4>
+      <h4 th:if="${param.saveStatus}" th:text="|창고 등록이 완료되었습니다!|"></h4>
+      <h4 th:if="${param.updateStatus}" th:text="|창고 수정이 완료되었습니다!|"></h4>
       <p></p>
       <table class="table table-bordered">
         <tr>

@@ -28,14 +28,17 @@
       <table class="table table-bordered" id="inputTable" width="100%" cellspacing="0">
         <thead>
         <th>번호</th>
+        <th>창고 코드</th>
         <th>창고 이름</th>
         <th>창고 주소</th>
         </thead>
         <tbody>
           <tr th:each="warehouse : ${warehouses}">
               <td th:text="${warehouseStat.index}"></td>
+              <td th:text="${warehouse.code}"></td>
               <td th:text="${warehouse.name}"></td>
               <td th:text="${warehouse.address.roadNameAddress}"></td>
+              <td th:text="${warehouse.address.zipcode}"></td>
               <td><button th:text="|상세보기|" class="btn btn-primary" th:onclick="|location.href='@{/warehouses/{id}(id = ${warehouse.id})}'|"></button></td>
           </tr>
         </tbody>

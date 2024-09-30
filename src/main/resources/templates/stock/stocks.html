@@ -73,7 +73,6 @@
                 </thead>
                 <tbody>
                 <tr th:each="stock : ${stocks}">
-                  <a th:href="@{{id}(id = ${stock.id})}">
                     <td th:text="${stockStat.index}"></td>
                     <!--<td th:if="${member.roleType.equals('ADMIN')}" th:text="${stock.warehouse.warehouseCode}"></td>
                     <td th:if="${member.roleType.equals('ADMIN')}" th:text="${stock.warehouse.warehouseName}"></td>-->
@@ -85,7 +84,6 @@
                     <td th:text="${stock.product.member.name}"></td>
                     <td th:text="${{stock.pallet.inboundRequestProduct.expirationDate}}"></td>
                     <td><button th:text="|상세보기|" class="btn btn-primary" th:onclick="|location.href='@{/stocks/{id}(id = ${stock.id})}'|"></button></td>
-                  </a>
                 </tr>
                 </tbody>
               </table>

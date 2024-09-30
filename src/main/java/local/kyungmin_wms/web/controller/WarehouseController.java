@@ -1,5 +1,6 @@
 package local.kyungmin_wms.web.controller;
 
+import java.util.List;
 import local.kyungmin_wms.domain.Member;
 import local.kyungmin_wms.domain.Warehouse;
 import local.kyungmin_wms.dto.WarehouseSaveDto;
@@ -40,7 +41,7 @@ public class WarehouseController {
     }
     Long saveWarehouseId = warehouseService.saveWarehouse(warehouseSaveDto);
     redirectAttributes.addAttribute("id", saveWarehouseId);
-    redirectAttributes.addAttribute("status", true);
+    redirectAttributes.addAttribute("saveStatus", true);
     return "redirect:/warehouses/{id}";
   }
 
@@ -49,8 +50,8 @@ public class WarehouseController {
   public String updateWarehouseForm(@PathVariable("id")Long id ,  Model model){
     Warehouse warehouse = warehouseService.findWarehouse(id);
     WarehouseUpdateDto warehouseUpdateDto = new WarehouseUpdateDto(warehouse.getName() , warehouse.getCode() ,
-        warehouse.getAddress().getRoadNameAddress() , warehouse.getAddress().getJibunAddress() ,
-        warehouse.getAddress().getZipcode() , warehouse.getAddress().getDetailsAddress());
+        warehouse.getAddress().getRoadNameAddress() , warehouse.getAddress().getJibunAddress() ,warehouse.getAddress().getDetailsAddress(),
+        warehouse.getAddress().getZipcode());
     model.addAttribute("warehouse", warehouseUpdateDto);
     model.addAttribute("id", warehouse.getId());
     return "warehouse/updateForm";
@@ -64,15 +65,16 @@ public class WarehouseController {
     }
     warehouseService.updateWarehouse(id , warehouseUpdateDto);
     redirectAttributes.addAttribute("id", id);
-    redirectAttributes.addAttribute("status", true);
+    redirectAttributes.addAttribute("updateStatus", true);
     return "redirect:/warehouses/{id}";
   }
 
 
 
   @GetMapping
-  public String getWarehouses(@ModelAttribute("warehouseSearch") WarehouseSearch warehouseSearch,
-      Model model) {
+  public String getWarehouses(@ModelAttribute("warehouseSearch") WarehouseSearch warehouseSearch, Model model) {
+    List<Warehouse> warehouses = warehouseService.findWarehouses(warehouseSearch);
+    model.addAttribute("warehouses" , warehouses);
     model.addAttribute("warehouseSearch", warehouseSearch);
     model.addAttribute("latitude", 37.218281064433);
     model.addAttribute("longitude", 127.420907144956);
