@@ -14,8 +14,8 @@ public class WarehouseController {
   @GetMapping
   public String getWarehouses(@ModelAttribute("warehouseSearch") WarehouseSearch warehouseSearch, Model model){
     model.addAttribute("warehouseSearch", warehouseSearch);
-    model.addAttribute("latitude" , 37.566535);
-    model.addAttribute("longitude" , 126.977969);
+    model.addAttribute("latitude" , 37.218281064433);
+    model.addAttribute("longitude" , 127.420907144956);
     return "warehouse/warehouses";
   }
 
