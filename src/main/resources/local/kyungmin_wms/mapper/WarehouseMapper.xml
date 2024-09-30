@@ -18,13 +18,13 @@
   </update>
 
 
-  <select id="findById" resultMap="warehouse">
+  <select id="findById" resultMap="warehouseResultMap">
     SELECT *
     FROM WAREHOUSE
     WHERE warehouse_id = #{id}
   </select>
 
-  <resultMap id="warehouse" type="Warehouse">
+  <resultMap id="warehouseResultMap" type="Warehouse">
     <id column="warehouse_id" property="id"/>
     <result column="warehouse_name" property="name"/>
     <result column="warehouse_code" property="code"/>
@@ -39,16 +39,16 @@
 
 
 
-  <select id="findAll">
+  <select id="findAll" resultMap="warehouseResultMap">
     SELECT *
     FROM WAREHOUSE
     <where>
-      <if test="name != null and !name.equals('')">
-        and name like concat('%' , #{name} , '%')
+      <if test="warehouseName != null and !warehouseName.equals('')">
+        and name like concat('%' , #{warehouseName} , '%')
       </if>
 
-      <if test="code != null and !code.equals('')">
-        and code like concat('%' , #{code} , '%')
+      <if test="warehouseRoadAddress != null and !warehouseRoadAddress.equals('')">
+        and warehouse_road_address like concat('%' , #{warehouseRoadAddress} , '%')
       </if>
     </where>
   </select>
