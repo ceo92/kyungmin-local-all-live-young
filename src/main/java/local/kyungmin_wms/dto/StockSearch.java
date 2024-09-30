@@ -21,7 +21,7 @@ public class StockSearch {
   private String warehouseCode; //총관리자의 재고 조회
 
   private String stockCode;
-  private List<String> storeTemperatures = new ArrayList<>(); //보관 온도(상온 , 냉동 , 냉장) 별 조회 체크박스 검색
+  private List<String> storeTemperatures = new ArrayList<>(); //보관 온도(상온 , 냉동 , 냉장) 별 조회 체크박스 검색 , 리스트도 파라메터로 받을 수 있음 ㅇㅇ 여러 데이터가 매핑이 되네 단 String이어야 하는듯?
   private List<String> productTypes = new ArrayList<>(); //상품 종류(마약 , 폭발물 , 생물학적제제 , 일반) 체크박스 검색
   private String productName; //LIKE 조건
   private String companyName; //LIKE 조건
