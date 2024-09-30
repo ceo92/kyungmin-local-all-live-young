@@ -30,7 +30,7 @@
 
         <div class="form-group">
           <label for="zipcode">우편 번호</label>
-          <input type="text" class="form-control" id="zipcode" th:field="*{zipcode}" th:errorclass="field-error">
+          <input type="text" class="form-control" id="zipcode" th:field="*{zipcode}" th:errorclass="field-error" onclick="sample4_execDaumPostcode()">
           <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="btn btn-secondary form-control"><br>
           <div th:errors="*{zipcode}" class="field-error"></div>
         </div>
