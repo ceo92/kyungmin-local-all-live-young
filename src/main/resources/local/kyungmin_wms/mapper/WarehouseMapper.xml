@@ -44,7 +44,7 @@
     FROM WAREHOUSE
     <where>
       <if test="warehouseName != null and !warehouseName.equals('')">
-        and name like concat('%' , #{warehouseName} , '%')
+        and warehouse_name like concat('%' , #{warehouseName} , '%')
       </if>
 
       <if test="warehouseRoadAddress != null and !warehouseRoadAddress.equals('')">
