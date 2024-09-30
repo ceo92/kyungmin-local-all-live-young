@@ -4,8 +4,8 @@
 <mapper namespace="local.kyungmin_wms.mapper.WarehouseMapper">
 
   <insert id="save" keyProperty="id" useGeneratedKeys="true">
-    INSERT INTO WAREHOUSE(warehouse_name , warehouse_code , warehouse_road_address , warehouse_jibun_address , warehouse_zipcode , warehouse_details_address)
-    values(#{name} , #{code} , #{address.roadNameAddress} , #{address.jibunAddress} , #{address.zipcode}, #{address.detailsAddress})
+    INSERT INTO WAREHOUSE(warehouse_name , warehouse_road_address , warehouse_jibun_address , warehouse_zipcode , warehouse_details_address)
+    values(#{name}  , #{address.roadNameAddress} , #{address.jibunAddress} , #{address.zipcode}, #{address.detailsAddress});
   </insert>
 
 

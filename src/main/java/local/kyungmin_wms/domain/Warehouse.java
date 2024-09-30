@@ -1,6 +1,7 @@
 package local.kyungmin_wms.domain;
 
 
+import java.util.Random;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,9 +20,12 @@ public class Warehouse {
   private String code;
 
 
-  public void changeWarehouse(String name , String code , String roadNameAddress , String jibunAddress , String detailsAddress ,String zipcode){
+
+
+
+  //code 제외 , code는 시스템이 만들어줌 ㅇㅇ
+  public void changeWarehouse(String name , String roadNameAddress , String jibunAddress , String detailsAddress ,String zipcode){
     this.name = name;
-    this.code =code;
     this.address = new Address(roadNameAddress, jibunAddress, detailsAddress, zipcode);
   }
 

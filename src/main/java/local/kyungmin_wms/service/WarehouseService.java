@@ -1,6 +1,9 @@
 package local.kyungmin_wms.service;
 
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 import local.kyungmin_wms.domain.Address;
 import local.kyungmin_wms.domain.Warehouse;
 import local.kyungmin_wms.dto.WarehouseSaveDto;
@@ -17,14 +20,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class WarehouseService {
   private final WarehouseMapper warehouseMapper;
 
+
   @Transactional
   public Long saveWarehouse(WarehouseSaveDto warehouseSaveDto){
     Warehouse warehouse = Warehouse.builder().name(warehouseSaveDto.getName())
-        .code(warehouseSaveDto.getCode()).address(new Address(warehouseSaveDto.getRoadNameAddress()
+        .address(new Address(warehouseSaveDto.getRoadNameAddress()
             , warehouseSaveDto.getJibunAddress()
             , warehouseSaveDto.getDetailsAddress()
             , warehouseSaveDto.getZipcode())).build();
     warehouseMapper.save(warehouse);
+
     return warehouse.getId();
   }
 
@@ -32,8 +37,7 @@ public class WarehouseService {
   @Transactional
   public void updateWarehouse(Long id , WarehouseUpdateDto warehouseUpdateDto){
     Warehouse warehouse = findWarehouse(id);
-    warehouse.changeWarehouse(warehouseUpdateDto.getName() ,
-        warehouseUpdateDto.getCode() ,
+    warehouse.changeWarehouse(warehouseUpdateDto.getName(),
         warehouseUpdateDto.getRoadNameAddress() ,
         warehouseUpdateDto.getJibunAddress() ,
         warehouseUpdateDto.getDetailsAddress(),
