@@ -17,15 +17,19 @@ import org.springframework.transaction.annotation.Transactional;
 public class WarehouseService {
   private final WarehouseMapper warehouseMapper;
 
-  public void saveWarehouse(WarehouseSaveDto warehouseSaveDto){
+  @Transactional
+  public Long saveWarehouse(WarehouseSaveDto warehouseSaveDto){
     Warehouse warehouse = Warehouse.builder().name(warehouseSaveDto.getName())
         .code(warehouseSaveDto.getCode()).address(new Address(warehouseSaveDto.getRoadNameAddress()
             , warehouseSaveDto.getJibunAddress()
             , warehouseSaveDto.getDetailsAddress()
             , warehouseSaveDto.getZipcode())).build();
     warehouseMapper.save(warehouse);
+    return warehouse.getId();
   }
 
+
+  @Transactional
   public void updateWarehouse(Long id , WarehouseUpdateDto warehouseUpdateDto){
     Warehouse warehouse = findWarehouse(id);
     warehouse.changeWarehouse(warehouseUpdateDto.getName() ,
