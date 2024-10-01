@@ -1,5 +1,7 @@
 package local.kyungmin_wms.web.controller;
 
+import java.awt.Desktop;
+import java.net.MalformedURLException;
 import java.util.List;
 import local.kyungmin_wms.constant.ProductType;
 import local.kyungmin_wms.constant.StoreTemperature;
@@ -11,6 +13,8 @@ import local.kyungmin_wms.login_temp.Login;
 import local.kyungmin_wms.service.StockService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +24,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -29,6 +34,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class StockController {
 
   private final StockService stockService;
+  private final FileStore fileStore;
 
 
   //이렇게 모델로 넘겨주는 게 나음 ㅇㅇ
@@ -83,6 +89,15 @@ public class StockController {
     redirectAttributes.addAttribute("id" , id);
     redirectAttributes.addAttribute("status" , true);
     return "redirect:/stocks/{id}";
+  }
+
+
+  @GetMapping("images/{filename}")
+  @ResponseBody
+  public Resource showImage(@PathVariable("filename") String filename) throws MalformedURLException {
+    return new UrlResource("file:"+ fileStore.getFullPath(filename));
+
+
   }
 
 

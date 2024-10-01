@@ -49,6 +49,7 @@
       <result column="product_name" property="productName"/>
       <result column="store_temperature" property="storeTemperature"/>
       <result column="product_type" property="productType"/>
+      <result column="product_image_file_name" property="imageFileName"/>
       <association property="member" javaType="Member">
         <id column="member_id" property="id"/>
         <result column="name" property="name"/>

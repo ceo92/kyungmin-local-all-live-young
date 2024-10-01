@@ -2,6 +2,18 @@
 <html th:replace="~{fragment/layout.html :: layout(~{::section})}" xmlns:th="http://www.thymeleaf.org">
 
   <section>
+    <style>
+      table {
+              width: 100%;
+              border-collapse: collapse;
+          }
+          th, td {
+              border: 1px solid black;
+              padding: 10px;
+              text-align: center; /* 수평 가운데 정렬 */
+              vertical-align: middle; /* 수직 가운데 정렬 */
+          }
+    </style>
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">재고 상세</h1>
     <div class="card shadow">
@@ -13,6 +25,7 @@
           <tr>
             <th>재고번호</th>
             <td th:text="${stock.stockCode}"></td>
+            <td rowspan="20"><img th:src="@{/stocks/images/{filename}(filename = ${stock.product.imageFileName})}" width="500" height="570"></td>
           </tr>
 
           <tr>

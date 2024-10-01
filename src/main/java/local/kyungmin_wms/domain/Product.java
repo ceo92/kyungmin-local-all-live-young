@@ -18,10 +18,12 @@ public class Product {
   private String productName;
   private String storeTemperature; //StoreTemperature
   private String productType; //ProductType => type 변환하자
+  private String imageFileName;
 
   @DateTimeFormat(pattern = "yyyy. MM. dd. a hh:mm")
   private LocalDateTime productLicenseDate;
   private Integer productLicenseNum;
   private Member member;
+
 
 }
