@@ -1,6 +1,8 @@
 package local.kyungmin_wms.service;
 
 import java.util.List;
+import local.kyungmin_wms.constant.ProductType;
+import local.kyungmin_wms.constant.StoreTemperature;
 import local.kyungmin_wms.domain.InboundRequestProduct;
 import local.kyungmin_wms.domain.Member;
 import local.kyungmin_wms.domain.Stock;
@@ -19,6 +21,10 @@ public class StockService {
   private final StockMapper stockMapper;
 
   public List<Stock> findStocks(StockSearch stockSearch, Member member) {
+    List<String> productTypeList = stockSearch.getProductTypes().stream().map(productType -> ProductType.valueOf(productType).getDescription()).toList();
+    List<String> storeTemperatureList  = stockSearch.getStoreTemperatures().stream().map(storeTemperature -> StoreTemperature.valueOf(storeTemperature).getDescription()).toList();
+    stockSearch.setProductTypes(productTypeList);
+    stockSearch.setStoreTemperatures(storeTemperatureList);
     return stockMapper.findAll(stockSearch, member);
   }
 

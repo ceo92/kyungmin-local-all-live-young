@@ -17,7 +17,7 @@ public class Product {
   private Long id;
   private String productName;
   private String storeTemperature; //StoreTemperature
-  private String productType; //ProductType
+  private String productType; //ProductType => type 변환하자
 
   @DateTimeFormat(pattern = "yyyy. MM. dd. a hh:mm")
   private LocalDateTime productLicenseDate;

@@ -20,10 +20,8 @@ public class InboundRequest {
   private Warehouse warehouse;
   private RequestStatus requestStatus;
 
-  @DateTimeFormat(pattern =  "yyyy-MM-dd hh:mm")
   private LocalDateTime regDate;
 
-  @DateTimeFormat(pattern =  "yyyy-MM-dd hh:mm")
   private LocalDateTime modDate;
 
 
