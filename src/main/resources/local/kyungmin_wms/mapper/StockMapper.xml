@@ -152,6 +152,9 @@
         and i.expiration_date &lt; #{stockSearch.expirationDate}
       </if>
     </where>
+    ORDER BY
+    id DESC
+    LIMIT #{offset}, #{pageSearchDto.recordSize}
   </select>
 
 
