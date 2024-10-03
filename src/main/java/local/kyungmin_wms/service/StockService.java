@@ -12,6 +12,7 @@ import local.kyungmin_wms.dto.StockSearch;
 import local.kyungmin_wms.dto.StockUpdateDto;
 import local.kyungmin_wms.mapper.StockMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

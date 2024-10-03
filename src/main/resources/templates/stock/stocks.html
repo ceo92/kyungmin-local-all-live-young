@@ -11,6 +11,11 @@
 <!--            <h6 class="m-0 font-weight-bold text-primary">재고 검색</h6>-->
             <div>
 
+          <!--    <th:block>
+                <label for="warehouseName" th:text="|창고 이름 : |"></label>
+                <input type="text" th:field="*{warehouseName}" id="warehouseName">
+              </th:block>-->
+
               <th:block>
                 <label for="stockCode" th:text="|재고 코드 : |">재고 코드</label>
                 <input type="text" th:field="*{stockCode}" id="stockCode">
@@ -59,9 +64,8 @@
 <!--              <h6 class="m-0 font-weight-bold text-primary">재고 목록</h6>-->
               <table class="table table-bordered" id="inputTable" width="100%" cellspacing="0">
                 <thead>
-                  <!--<th th:if="${member.roleType.equals('ADMIN')}" th:text="|창고 코드|"></th>
-                  <th th:if="${member.roleType.equals('ADMIN')}" th:text="|창고 이름|"></th>-->
                   <th>번호</th>
+<!--                  <th>창고 이름</th>-->
                   <th>재고 코드</th>
                   <th>의약품 이름</th>
                   <th>보관 온도</th>
@@ -74,9 +78,7 @@
                 <tbody>
                 <tr th:each="stock : ${stocks}">
                     <td th:text="${stockStat.index}"></td>
-                    <!--<td th:if="${member.roleType.equals('ADMIN')}" th:text="${stock.warehouse.warehouseCode}"></td>
-                    <td th:if="${member.roleType.equals('ADMIN')}" th:text="${stock.warehouse.warehouseName}"></td>-->
-
+<!--                    <td th:text="${stock.warehouse.name}"></td>-->
                     <td th:text="${stock.stockCode}"></td>
                     <td th:text="${stock.product.productName}"></td>
                     <td th:text="${stock.product.storeTemperature}"></td>

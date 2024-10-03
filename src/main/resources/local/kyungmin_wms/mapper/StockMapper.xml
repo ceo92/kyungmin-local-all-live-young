@@ -5,7 +5,9 @@
 
   <update id="update">
     UPDATE INBOUND_REQUEST_PRODUCT i , STOCK s
-    SET i.pallet_quantity = #{inboundRequestProduct.palletQuantity}  , i.box_quantity = #{inboundRequestProduct.boxQuantity} , s.mod_date = NOW()
+    SET i.pallet_quantity = #{inboundRequestProduct.palletQuantity} ,
+    i.box_quantity = #{inboundRequestProduct.boxQuantity} ,
+    s.mod_date = NOW()
     WHERE i.inbound_request_product_id = #{inboundRequestProduct.id} AND s.stock_id=#{stockId};
   </update>
 
@@ -99,6 +101,11 @@
         <result property="expirationDate" column="expiration_date"/>
       </association>
     </association>
+
+    <association property="warehouse" javaType="Warehouse">
+      <id column="warehouse_id" property="id"/>
+      <result column="warehouse_name" property="name"/>
+    </association>
   </resultMap>
 
 
@@ -117,43 +124,33 @@
     JOIN WAREHOUSE w
     ON s.warehouse_id = w.warehouse_id
     <where>
+      <if test="stockSearch.warehouseName != null and !stockSearch.warehouseName.equals('')">
+        and w.warehouse_name like concat('%' , #{stockSearch.warehouseName} , '%')
+      </if>
       <if test="stockSearch.stockCode != null and !stockSearch.stockCode.equals('')">
         and s.stock_code like concat('%' , #{stockSearch.stockCode} , '%')
       </if>
-
       <if test="stockSearch.storeTemperatures != null and stockSearch.storeTemperatures.size() > 0">
         and p.store_temperature IN
         <foreach collection="stockSearch.storeTemperatures" item="storeTemperature" open="(" separator="," close=")">
           #{storeTemperature}
         </foreach>
       </if>
-
-
       <if test="stockSearch.productTypes != null and stockSearch.productTypes.size() > 0">
         and p.product_type IN
         <foreach collection="stockSearch.productTypes" item="productType" open="(" separator="," close=")">
           #{productType}
         </foreach>
       </if>
-
       <if test="stockSearch.productName != null and !stockSearch.productName.equals('')">
         and p.product_name like concat('%' , #{stockSearch.productName} , '%')
       </if>
-
       <if test="stockSearch.companyName != null and !stockSearch.companyName.equals('')">
         and m.name like concat('%' , #{stockSearch.companyName} , '%')
       </if>
-
       <if test="stockSearch.expirationDate != null and !stockSearch.expirationDate.equals('')">
         and i.expiration_date &lt; #{stockSearch.expirationDate}
       </if>
-
-      <!--<if test="member.roleType == @local.kyungmin_wms.constant.RoleType@ADMIN">
-        and w.warehouse_code = #{stockSearch.warehouseCode}
-        and w.warehouse_name = #{stockSearch.warehouseName}
-      </if>-->
-
-
     </where>
   </select>
 
