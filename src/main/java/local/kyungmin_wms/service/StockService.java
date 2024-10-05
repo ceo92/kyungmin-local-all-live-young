@@ -8,6 +8,7 @@ import local.kyungmin_wms.domain.InboundRequestProduct;
 import local.kyungmin_wms.domain.Member;
 import local.kyungmin_wms.domain.Product;
 import local.kyungmin_wms.domain.Stock;
+import local.kyungmin_wms.dto.PageSearchDto;
 import local.kyungmin_wms.dto.StockSearch;
 import local.kyungmin_wms.dto.StockUpdateDto;
 import local.kyungmin_wms.mapper.StockMapper;
@@ -23,8 +24,8 @@ public class StockService {
 
   private final StockMapper stockMapper;
 
-  public List<Stock> findStocks(StockSearch stockSearch, Member member) {
-    return stockMapper.findAll(stockSearch, member);
+  public List<Stock> findStocks(StockSearch stockSearch, Member member , PageSearchDto pageSearchDto) {
+    return stockMapper.findAll(stockSearch, member , pageSearchDto);
   }
 
   public Stock findStock(Long id){
