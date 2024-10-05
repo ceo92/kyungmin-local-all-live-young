@@ -18,6 +18,8 @@ public class PageSearchDto {
     this.pageSize = 10;
   }
 
+
+  //편의 메서드
   public int getOffset() {
     return (page - 1) * recordSize;
   }

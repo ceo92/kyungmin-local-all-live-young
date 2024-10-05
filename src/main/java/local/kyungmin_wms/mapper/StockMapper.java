@@ -20,7 +20,7 @@ public interface StockMapper {
       PageSearchDto pageSearchDto); // 검색조건 별 전체 재고 화면 조회
 
 
-  https://congsong.tistory.com/26
+
   int count(PageSearchDto pageSearchDto);
 
   Optional<Stock> findById(Long id); //상세 재고 화면 조회

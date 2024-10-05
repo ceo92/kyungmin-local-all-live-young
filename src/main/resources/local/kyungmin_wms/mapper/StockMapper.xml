@@ -152,10 +152,18 @@
         and i.expiration_date &lt; #{stockSearch.expirationDate}
       </if>
     </where>
-    ORDER BY
-    id DESC
-    LIMIT #{offset}, #{pageSearchDto.recordSize}
+    ORDER BY id DESC
+    LIMIT #{pageSearchDto.offset}, #{pageSearchDto.recordSize};
   </select>
+
+
+  <select id="count" resultType="int">
+    SELECT COUNT(*)
+    FROM STOCK
+    WHERE delete_ym = 0;
+
+  </select>
+
 
 
 <!--
