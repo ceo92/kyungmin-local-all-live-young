@@ -7,6 +7,7 @@ import local.kyungmin_wms.constant.ProductType;
 import local.kyungmin_wms.constant.StoreTemperature;
 import local.kyungmin_wms.domain.Member;
 import local.kyungmin_wms.domain.Stock;
+import local.kyungmin_wms.dto.PageSearchDto;
 import local.kyungmin_wms.dto.StockSearch;
 import local.kyungmin_wms.dto.StockUpdateDto;
 import local.kyungmin_wms.login_temp.Login;
@@ -49,8 +50,8 @@ public class StockController {
   }
 
   @GetMapping
-  public String getStocks(@ModelAttribute("stockSearch") StockSearch stockSearch, Model model , @Login Member member){
-    List<Stock> stocks = stockService.findStocks(stockSearch, member);
+  public String getStocks(@ModelAttribute("stockSearch") StockSearch stockSearch, @ModelAttribute("pageSearchDto") PageSearchDto pageSearchDto ,Model model , @Login Member member){
+    List<Stock> stocks = stockService.findStocks(stockSearch, member , pageSearchDto);
     model.addAttribute("member" , member);
     model.addAttribute("stocks" , stocks);
     return "stock/stocks";
