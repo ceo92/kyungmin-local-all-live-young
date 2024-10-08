@@ -97,9 +97,8 @@ public class StockController {
   @ResponseBody
   public Resource showImage(@PathVariable("filename") String filename) throws MalformedURLException {
     return new UrlResource("file:"+ fileStore.getFullPath(filename));
-
-
   }
+
 
 
 
