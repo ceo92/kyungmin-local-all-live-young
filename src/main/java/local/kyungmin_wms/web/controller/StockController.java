@@ -50,8 +50,8 @@ public class StockController {
   }
 
   @GetMapping
-  public String getStocks(@ModelAttribute("stockSearch") StockSearch stockSearch, @ModelAttribute("pageSearchDto") PageSearchDto pageSearchDto ,Model model , @Login Member member){
-    List<Stock> stocks = stockService.findStocks(stockSearch, member , pageSearchDto);
+  public String getStocks(@ModelAttribute("stockSearch") StockSearch stockSearch ,Model model , @Login Member member){
+    List<Stock> stocks = stockService.findStocks(stockSearch, member);
     model.addAttribute("member" , member);
     model.addAttribute("stocks" , stocks);
     return "stock/stocks";

@@ -16,8 +16,7 @@ public interface StockMapper {
 
   void update(@Param("stockId") Long stockId , @Param("inboundRequestProduct") InboundRequestProduct inboundRequestProduct); //재고 수정(재고 실사)
 
-  List<Stock> findAll(@Param(value = "stockSearch") StockSearch stockSearch, @Param(value = "member") Member member, @Param("pageSearchDto")
-      PageSearchDto pageSearchDto); // 검색조건 별 전체 재고 화면 조회
+  List<Stock> findAll(@Param(value = "stockSearch") StockSearch stockSearch, @Param(value = "member") Member member); // 검색조건 별 전체 재고 화면 조회
 
 
 

@@ -24,8 +24,8 @@ public class StockService {
 
   private final StockMapper stockMapper;
 
-  public List<Stock> findStocks(StockSearch stockSearch, Member member , PageSearchDto pageSearchDto) {
-    return stockMapper.findAll(stockSearch, member , pageSearchDto);
+  public List<Stock> findStocks(StockSearch stockSearch, Member member) {
+    return stockMapper.findAll(stockSearch, member);
   }
 
   public Stock findStock(Long id){
